@@ -1,8 +1,8 @@
 NAME = push_swap
-SRC = push_swap.c t_stack.c radix.c
+SRC = push_swap.c t_stack.c sort.c insertion.c operations.c
 SRC_OBJ = $(SRC:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra 
 
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/21 16:03:30 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:32:27 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	index_stack(t_stack **s)
 	}
 }
 
-static void	init_stack(t_stack **s, int ac, char **av)
+static int	init_stack(t_stack **s, int ac, char **av)
 {
 	int	i;
 	t_stack	*n;
@@ -61,17 +61,28 @@ static void	init_stack(t_stack **s, int ac, char **av)
 	{
 		n = ft_lstnew(ft_atoi(av[i]));
 		ft_lstadd_back(s, n);
-		printf("%ld \n", n->nbr);
 		i++;
 	}
 	index_stack(s);
 	printList(*s);
+	return (i - 1);
+}
+
+static void	call_sort(int len, t_stack **a, t_stack **b)
+{
+	printf("======= STACK OF [%d ELEMENTS] ======= \n", len);
+	if (len == 2)
+		tw_n(a);
+	if (len == 3)
+		th_n(a);
+	printList(*a);
 }
 
 int main (int argc, char **argv)
 {
-	t_stack	**a;
-	t_stack	**b;
+	t_stack		**a;
+	t_stack		**b;
+	int			l;
 
 	if(argc < 2)
 		return (-1);
@@ -80,7 +91,8 @@ int main (int argc, char **argv)
 	if (!a || !b)
 		return (0);
 	*a = *b = NULL;
-	init_stack(a, argc, argv);
-	radix_sort(a, b);
+	l = init_stack(a, argc, argv);
+	printf("??? %d \n", l);
+	call_sort(l, a, b);
 	return (0);
 }

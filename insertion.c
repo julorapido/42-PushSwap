@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix.c                                            :+:      :+:    :+:   */
+/*   insertion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:46:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/21 16:49:20 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:29:36 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ int		max_bits(t_stack **s)
 			max = head->index;
 		head = head->next;
 	}
-	printf("INDEX MAX %d \n", max);
 	bits = 0;
 	while ((max >> bits) != 0)
 		bits++;
-	printf("BITS?? %d \n", bits);
 	return (bits);
 }
 
@@ -48,8 +46,6 @@ void	radix_sort(t_stack **a, t_stack **b)
 	head = *a;
 	bits_max = max_bits(a); // stack len shifted
 	size = ft_lstsize(head);
-	printf("%d A STACK BITS \n", bits_max);
-	printf("%d LST SIZE \n", size);
 	i = 0;
 	while (i < bits_max)
 	{
@@ -58,6 +54,12 @@ void	radix_sort(t_stack **a, t_stack **b)
 		{
 			head = *a;
 		}
+		i++;
 	}
 	*b = 0;	
+}
+
+void	insertion_sort(t_stack **a)
+{
+	
 }
