@@ -6,13 +6,16 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:11:04 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/25 12:36:30 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:02:04 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-// Take the 1st top element of [STACK A] and put it at top of [STACK B].
-// Do nothing if a is empty.
+// ========================================
+//					PUSH
+// ========================================
+// - Take the 1st top element of [STACK A] and put it at top of [STACK B].
+// - Do nothing if a is empty.
 void	p_ab(t_stack **from_, t_stack **to_)
 {
 	t_stack	*head_from;
@@ -39,19 +42,73 @@ void	p_ab(t_stack **from_, t_stack **to_)
 	}
 }
 
-// Swap 2 top el of [STACK A or STACK B]
+// ====================================
+// 				 SWAP
+// ====================================
+// - Swap the first 2 elements at the top of stack b.
+// - Do nothing if there is only one or no elements.
 void	s_ab(t_stack **a_b)
 {
 	t_stack *head;
-	int		temp;
+	int		temp_nbr;
+	int		temp_indx;
 
 	head = *a_b;
-	if (!head || !head->nbr || !head->next)
+	if (ft_lstsize(*a_b) < 2 || !head || !(head->next))
 		return ;
 	
-	temp = head->nbr;
+	temp_nbr = head->nbr;
+	temp_indx = head->index;
 	head->nbr = (head->next)->nbr;
-	(head->next)->nbr = temp;
+	head->index = (head->next)->index;
+	(head->next)->nbr = temp_nbr;
+	(head->next)->index = temp_indx;
 }
 
+// ====================================
+// 				 ROTATE
+// ====================================
+// - Shift up all elements of stack a by 1.
+// - The first element becomes the last one.
+void r_ab(t_stack **a_b)
+{
+	t_stack	*head;
+	t_stack *last_;
 
+	head = *a_b;
+	if (!head || ft_lstsize(*a_b) < 2)
+		return ;
+
+	last_ = ft_lstlast(*a_b);
+	*a_b = head->next;
+	head->next = NULL;
+	last_->next = head;
+}
+
+// ====================================
+// 			  REVERSE ROTATE
+// ====================================
+// - Shift down all elements of stack a by 1.
+// - The last element becomes the first one.
+void	rr_ab(t_stack **a_b)
+{
+	t_stack	*head;
+	t_stack	*tail;
+
+	if (ft_lstsize(*a_b) < 2)
+		return ;
+
+	head = *a_b;
+	tail = ft_lstlast(head);
+	while (head)
+	{
+		if (head->next->next == NULL)
+		{
+			head->next = NULL;
+			break ;
+		}
+		head = head->next;
+	}
+	tail->next = *a_b;
+	*a_b = tail;
+}

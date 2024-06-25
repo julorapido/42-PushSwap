@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/25 12:32:27 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:59:34 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	init_stack(t_stack **s, int ac, char **av)
 	return (i - 1);
 }
 
-static void	call_sort(int len, t_stack **a, t_stack **b)
+static void	call_sort(int len, t_stack **a, t_stack **b, info_t *l)
 {
 	printf("======= STACK OF [%d ELEMENTS] ======= \n", len);
 	if (len == 2)
@@ -82,17 +82,21 @@ int main (int argc, char **argv)
 {
 	t_stack		**a;
 	t_stack		**b;
+	info_t		*inf_;
 	int			l;
 
 	if(argc < 2)
 		return (-1);
 	a = (t_stack **) malloc(sizeof(t_stack **));
 	b = (t_stack **) malloc(sizeof(t_stack **));
-	if (!a || !b)
+	inf_ = (info_t *) malloc(sizeof(info_t *));
+	if (!a || !b || !inf_)
 		return (0);
 	*a = *b = NULL;
+	inf_->a = (t_uli_) (&a);
+	inf_->b = (t_uli_) (&b);
+	//printf("STACK A = %x %x \n", inf_->a, inf_->b);
 	l = init_stack(a, argc, argv);
-	printf("??? %d \n", l);
-	call_sort(l, a, b);
+	call_sort(l, a, b, inf_);
 	return (0);
 }
