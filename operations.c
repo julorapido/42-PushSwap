@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:11:04 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/25 16:02:04 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:15:50 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -16,7 +16,7 @@
 // ========================================
 // - Take the 1st top element of [STACK A] and put it at top of [STACK B].
 // - Do nothing if a is empty.
-void	p_ab(t_stack **from_, t_stack **to_)
+void	p_ab(t_stack **from_, t_stack **to_, char *msg)
 {
 	t_stack	*head_from;
 	t_stack	*head_to;
@@ -40,6 +40,7 @@ void	p_ab(t_stack **from_, t_stack **to_)
 		temp->next = head_to;
 		*to_ = temp;
 	}
+	write(1, msg, 3);
 }
 
 // ====================================
@@ -47,7 +48,7 @@ void	p_ab(t_stack **from_, t_stack **to_)
 // ====================================
 // - Swap the first 2 elements at the top of stack b.
 // - Do nothing if there is only one or no elements.
-void	s_ab(t_stack **a_b)
+void	s_ab(t_stack **a_b, char *msg)
 {
 	t_stack *head;
 	int		temp_nbr;
@@ -57,6 +58,7 @@ void	s_ab(t_stack **a_b)
 	if (ft_lstsize(*a_b) < 2 || !head || !(head->next))
 		return ;
 	
+	write(1, msg, 3);
 	temp_nbr = head->nbr;
 	temp_indx = head->index;
 	head->nbr = (head->next)->nbr;
@@ -70,7 +72,7 @@ void	s_ab(t_stack **a_b)
 // ====================================
 // - Shift up all elements of stack a by 1.
 // - The first element becomes the last one.
-void r_ab(t_stack **a_b)
+void r_ab(t_stack **a_b, char *msg)
 {
 	t_stack	*head;
 	t_stack *last_;
@@ -79,6 +81,7 @@ void r_ab(t_stack **a_b)
 	if (!head || ft_lstsize(*a_b) < 2)
 		return ;
 
+	write(1, msg, 3);
 	last_ = ft_lstlast(*a_b);
 	*a_b = head->next;
 	head->next = NULL;
@@ -90,7 +93,7 @@ void r_ab(t_stack **a_b)
 // ====================================
 // - Shift down all elements of stack a by 1.
 // - The last element becomes the first one.
-void	rr_ab(t_stack **a_b)
+void	rr_ab(t_stack **a_b, char *msg)
 {
 	t_stack	*head;
 	t_stack	*tail;
@@ -109,6 +112,7 @@ void	rr_ab(t_stack **a_b)
 		}
 		head = head->next;
 	}
+	write(1, msg, 4);
 	tail->next = *a_b;
 	*a_b = tail;
 }

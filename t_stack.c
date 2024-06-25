@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:25:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/21 15:34:05 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:26:23 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,3 +95,17 @@ void	printList(t_stack *head)
 	}
 }
 
+void	free_stack(t_stack **stack)
+{
+	t_stack	*head;
+	t_stack	*tmp;
+
+	head = *stack;
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+	free(stack);
+}

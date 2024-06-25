@@ -1,39 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insertion.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 14:46:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/25 18:07:05 by jsaintho         ###   ########.fr       */
+/*   Created: 2024/06/25 16:23:05 by jsaintho          #+#    #+#             */
+/*   Updated: 2024/06/25 16:42:06 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*stack_to_list()
+int	is_sorted(t_stack **stack)
 {
-	int	*ar;
+	t_stack	*a;
 
-	if (!ar)
-		return (NULL);
-	while()
+	a = *stack;
+	while (a && a->next)
+	{
+		if (a->nbr > (a->next)->nbr)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }
 
-
-void	insertion_sort(t_stack **a, t_stack **b)
+int	get_dist(t_stack **s, int ix)
 {
-	t_stack	*i;
-	t_stack *j;
+	t_stack *h;
+	int		dist;
 
-	while (i)
+	dist = 0;
+	h = *s;
+	while (h)
 	{
-		j = i;
-		while ()
-		{
-			
-		}
-		i = i->next;
+		if (h->index == ix)
+			break ;
+		h = h->next;
+		dist++;
 	}
+	return (dist);
 }
