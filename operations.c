@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:11:04 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/27 16:54:46 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:07:10 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -59,6 +59,8 @@ void	s_ab(t_stack **a_b, char *msg)
 		return ;
 	
 	write(1, msg, 3);
+	// ft_putendl_fd(msg, 1);
+	//ft_putendl_fd("sa", 1);
 	temp_nbr = head->nbr;
 	temp_indx = head->index;
 	head->nbr = (head->next)->nbr;

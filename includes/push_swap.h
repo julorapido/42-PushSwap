@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/28 12:29:07 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:43:47 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_stackadd_back(t_stack **stack, t_stack *new);
 int		ft_stacksize(t_stack *s);
 void	printList(t_stack *head);
 long	ft_stack_nth(t_stack **s, int n);
+void	free_stack(t_stack **s);
 
 // operations
 void	s_ab(t_stack **a_b, char *m);

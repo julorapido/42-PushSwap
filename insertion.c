@@ -6,12 +6,11 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:46:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/01 15:17:38 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:51:28 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 // ===================
 //      QUICK SORT
@@ -118,7 +117,7 @@ int	count_e(t_stack **b, long v_)
 	v_i = h->nbr;
 	while (h)
 	{
-		if (v_ >= h->nbr && v_ <= v_i)
+		if (v_ >= h->nbr && v_<= v_i)
 			return (j);
 		j++;
 		v_i = h->nbr;

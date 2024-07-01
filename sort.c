@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:03:39 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/25 17:54:43 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:07:25 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	qu_n(t_stack **a, t_stack **b)
 	if (is_sorted(a))
 		return ;
 	dist = get_dist(a, get_min(a, -1));
-	printf("HEAD DISTANCE %d \n", dist);
 	if (dist == 1) // 1 0 2 3
 		r_ab(a, "ra\n");
 	else if (dist == 2)// 1 2 0 3
