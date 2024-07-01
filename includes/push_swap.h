@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/25 17:56:58 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:29:07 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ typedef struct s_stack
 }		t_stack;
 
 // t_stack.c
-t_stack	*ft_lstnew(int value);
-void	ft_lstadd_front(t_stack **stack, t_stack *new);
-t_stack	*ft_lstlast(t_stack *head);
-void	ft_lstadd_back(t_stack **stack, t_stack *new);
-int		ft_lstsize(t_stack *head);
+t_stack	*ft_stacknew(int value, t_stack *pre);
+void	ft_stackadd_front(t_stack **stack, t_stack *new);
+t_stack	*ft_stacklast(t_stack *head);
+void	ft_stackadd_back(t_stack **stack, t_stack *new);
+int		ft_stacksize(t_stack *s);
 void	printList(t_stack *head);
-
+long	ft_stack_nth(t_stack **s, int n);
 
 // operations
 void	s_ab(t_stack **a_b, char *m);
@@ -59,9 +59,14 @@ void	th_n(t_stack **a);
 void	qu_n(t_stack **a, t_stack **b);
 void	cq_n(t_stack **a, t_stack **b);
 void	insertion_sort(t_stack **a, t_stack **b);
+int		quick_sort_a(t_stack **a, t_stack **b, int len);
+int		quick_sort_b(t_stack **a, t_stack **b, int len);
+
 
 // utils
 int		get_dist(t_stack **s, int ix);
 int		is_sorted(t_stack **s);
+void	ft_lst_reassign(t_stack **a, int ix, long n_value);
+long	median(t_stack **a);
 
 #endif

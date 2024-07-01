@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/25 17:55:39 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:09:04 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,22 @@ static int	init_stack(t_stack **s, int ac, char **av)
 {
 	int	i;
 	t_stack	*n;
+	t_stack *prev;
+	t_stack *first_;
 
 	i = 1;
 	ac++;
 	while(av[i])
 	{
-		n = ft_lstnew(ft_atoi(av[i]));
-		ft_lstadd_back(s, n);
+		prev = n;
+		n = ft_stacknew(ft_atoi(av[i]), prev);
+		if (i == 1)
+			first_ = n;
+		ft_stackadd_back(s, n);
 		i++;
 	}
+	first_->prev = n;
+	//n->next = first_;
 	index_stack(s);
 	printList(*s);
 	return (i - 1);
@@ -81,7 +88,10 @@ static void	call_sort(int len, t_stack **a, t_stack **b)
 		cq_n(a, b);
 	if (len > 5)
 		insertion_sort(a, b);
+	printf("=== STACK-A === \n");
 	printList(*a);
+	printf("=== STACK-B === \n");
+	printList(*b);
 }
 
 int main (int argc, char **argv)

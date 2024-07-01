@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:11:04 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/25 16:15:50 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:54:46 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -22,7 +22,7 @@ void	p_ab(t_stack **from_, t_stack **to_, char *msg)
 	t_stack	*head_to;
 	t_stack *temp;
 
-	if (ft_lstsize(*from_) == 0)
+	if (ft_stacksize(*from_) == 0)
 		return;
 	head_to = *to_;
 	head_from = *from_;
@@ -55,7 +55,7 @@ void	s_ab(t_stack **a_b, char *msg)
 	int		temp_indx;
 
 	head = *a_b;
-	if (ft_lstsize(*a_b) < 2 || !head || !(head->next))
+	if (ft_stacksize(*a_b) < 2 || !head || !(head->next))
 		return ;
 	
 	write(1, msg, 3);
@@ -70,7 +70,7 @@ void	s_ab(t_stack **a_b, char *msg)
 // ====================================
 // 				 ROTATE
 // ====================================
-// - Shift up all elements of stack a by 1.
+// - ShiftUp^ all elements of stack a by 1.
 // - The first element becomes the last one.
 void r_ab(t_stack **a_b, char *msg)
 {
@@ -78,11 +78,11 @@ void r_ab(t_stack **a_b, char *msg)
 	t_stack *last_;
 
 	head = *a_b;
-	if (!head || ft_lstsize(*a_b) < 2)
+	if (!head || ft_stacksize(*a_b) < 2)
 		return ;
 
 	write(1, msg, 3);
-	last_ = ft_lstlast(*a_b);
+	last_ = ft_stacklast(*a_b);
 	*a_b = head->next;
 	head->next = NULL;
 	last_->next = head;
@@ -91,18 +91,18 @@ void r_ab(t_stack **a_b, char *msg)
 // ====================================
 // 			  REVERSE ROTATE
 // ====================================
-// - Shift down all elements of stack a by 1.
+// - ShiftDown all elements of stack a by 1.
 // - The last element becomes the first one.
 void	rr_ab(t_stack **a_b, char *msg)
 {
 	t_stack	*head;
 	t_stack	*tail;
 
-	if (ft_lstsize(*a_b) < 2)
+	if (ft_stacksize(*a_b) < 2)
 		return ;
 
 	head = *a_b;
-	tail = ft_lstlast(head);
+	tail = ft_stacklast(head);
 	while (head)
 	{
 		if (head->next->next == NULL)
