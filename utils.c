@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:23:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/28 15:13:33 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:21:33 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,43 @@ long	median(t_stack **a)
 	}
 	int n = (ft_stacksize(*a) + 1) / 2 - 1;
 	return (ar[n]);
+}
+
+
+t_stack	*get_next_min(t_stack **s)
+{
+	t_stack	*head;
+	t_stack *min;
+	int		z;
+
+	min = NULL;
+	z = 0;
+	head = *s;
+	if (head)
+	{
+		while (head)
+		{
+			if ((head->index == -1) && (!z || head->nbr < min->nbr))
+			{
+				min = head;
+				z = 1;
+			}
+			head = head->next;
+		}
+	}
+	return (min);
+}
+
+void	index_stack(t_stack **s)
+{
+	t_stack *head;
+	int		index;
+
+	index = 0;
+	head = get_next_min(s);
+	while (head)
+	{
+		head->index = index++;
+		head = get_next_min(s);
+	}
 }

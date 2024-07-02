@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/01 17:43:47 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:11:21 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef struct info_st
 }		info_t;
 */
 
+typedef struct s_el
+{
+		int		index;
+		int		cost;
+		long	val_;
+}		t_el;
+
 typedef struct s_stack
 {
 		long nbr;
@@ -45,8 +52,9 @@ t_stack	*ft_stacklast(t_stack *head);
 void	ft_stackadd_back(t_stack **stack, t_stack *new);
 int		ft_stacksize(t_stack *s);
 void	printList(t_stack *head);
-long	ft_stack_nth(t_stack **s, int n);
 void	free_stack(t_stack **s);
+t_stack	**ft_stack_createCopy(t_stack **s);
+t_stack	*ft_stack_nth(t_stack **s, long v);
 
 // operations
 void	s_ab(t_stack **a_b, char *m);
@@ -67,7 +75,8 @@ int		quick_sort_b(t_stack **a, t_stack **b, int len);
 // utils
 int		get_dist(t_stack **s, int ix);
 int		is_sorted(t_stack **s);
-void	ft_lst_reassign(t_stack **a, int ix, long n_value);
 long	median(t_stack **a);
+void	index_stack(t_stack **s);
+t_stack	*get_next_min(t_stack **s);
 
 #endif

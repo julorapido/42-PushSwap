@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:25:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/01 12:16:48 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:16:02 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ t_stack	*ft_stacknew(int nbr, t_stack *prev_)
 }
 
 // Adds the specified node to a stack (list) making it the head
-void	ft_stackadd_front(t_stack **stack, t_stack *new)
+/*void	ft_stackadd_front(t_stack **stack, t_stack *new)
 {
 	new->next = *stack;
 	*stack = new;
-}
+}*/
 
 // Returns the last node of a list
 t_stack	*ft_stacklast(t_stack *head)
@@ -94,7 +94,7 @@ void	printList(t_stack *head)
 	while (tmp)
 	{
 		if (tmp -> nbr)
-			printf(" >> [%ld] : %ld >> \n", tmp->nbr, tmp->index);
+			printf(">> [%ld] <<\n", tmp->nbr);
 		tmp = tmp->next;
 	}
 	printf("\n");
@@ -116,19 +116,35 @@ void	free_stack(t_stack **stack)
 }
 
 
-long	ft_stack_nth(t_stack **s, int n)
+t_stack	**ft_stack_createCopy(t_stack **copy_from)
 {
+	t_stack **new;
+	t_stack *v;
 	t_stack *h;
-	int 	c;
 
-	c = 0;
-	h = *s;
-	while (h && c != n)
+	new = (t_stack **) malloc(sizeof(t_stack **));
+	h = *copy_from;
+	while (h)
 	{
-		c++;
+		v = ft_stacknew(h->nbr, NULL);
+		ft_stackadd_back(new, v);
 		h = h->next;
 	}
-	if (c != n)
-		return (-1);
-	return (h->nbr);
+	index_stack(new);
+	return (new);
+}
+
+
+t_stack	*ft_stack_nth(t_stack **s, long n)
+{
+	t_stack	*h;
+
+	h = *s;
+	while (h)
+	{
+		if (h->nbr == n)
+			return (h);
+		h = h->next;
+	}
+	return (h);
 }

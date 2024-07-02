@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:11:04 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/01 18:07:10 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:44:04 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -40,7 +40,8 @@ void	p_ab(t_stack **from_, t_stack **to_, char *msg)
 		temp->next = head_to;
 		*to_ = temp;
 	}
-	write(1, msg, 3);
+	if (ft_strlen(msg) > 0)
+		write(1, msg, 3);
 }
 
 // ====================================
@@ -58,9 +59,8 @@ void	s_ab(t_stack **a_b, char *msg)
 	if (ft_stacksize(*a_b) < 2 || !head || !(head->next))
 		return ;
 	
-	write(1, msg, 3);
-	// ft_putendl_fd(msg, 1);
-	//ft_putendl_fd("sa", 1);
+	if (ft_strlen(msg) > 0)
+		write(1, msg, 3);
 	temp_nbr = head->nbr;
 	temp_indx = head->index;
 	head->nbr = (head->next)->nbr;
@@ -83,7 +83,8 @@ void r_ab(t_stack **a_b, char *msg)
 	if (!head || ft_stacksize(*a_b) < 2)
 		return ;
 
-	write(1, msg, 3);
+	if (ft_strlen(msg) > 0)
+		write(1, msg, 3);
 	last_ = ft_stacklast(*a_b);
 	*a_b = head->next;
 	head->next = NULL;
@@ -114,7 +115,8 @@ void	rr_ab(t_stack **a_b, char *msg)
 		}
 		head = head->next;
 	}
-	write(1, msg, 4);
+	if (ft_strlen(msg) > 0)
+		write(1, msg, 4);
 	tail->next = *a_b;
 	*a_b = tail;
 }
