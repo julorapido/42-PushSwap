@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:23:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/02 16:21:33 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:01:58 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	is_sorted(t_stack **stack)
 
 int	get_dist(t_stack **s, int ix)
 {
-	t_stack *h;
+	t_stack	*h;
 	int		dist;
 
 	dist = 0;
@@ -43,6 +43,7 @@ int	get_dist(t_stack **s, int ix)
 	return (dist);
 }
 
+/*
 long	median(t_stack **a)
 {
 	t_stack *h;
@@ -79,12 +80,12 @@ long	median(t_stack **a)
 	int n = (ft_stacksize(*a) + 1) / 2 - 1;
 	return (ar[n]);
 }
-
+*/
 
 t_stack	*get_next_min(t_stack **s)
 {
 	t_stack	*head;
-	t_stack *min;
+	t_stack	*min;
 	int		z;
 
 	min = NULL;
@@ -107,7 +108,7 @@ t_stack	*get_next_min(t_stack **s)
 
 void	index_stack(t_stack **s)
 {
-	t_stack *head;
+	t_stack	*head;
 	int		index;
 
 	index = 0;

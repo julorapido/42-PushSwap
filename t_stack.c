@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:25:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/02 17:16:02 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:05:38 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	ft_stacksize(t_stack *s)
 	return (i);
 }
 
+/*
 // Prints the Linked List
 void	printList(t_stack *head)
 {
@@ -98,7 +99,7 @@ void	printList(t_stack *head)
 		tmp = tmp->next;
 	}
 	printf("\n");
-}
+}*/
 
 void	free_stack(t_stack **stack)
 {
@@ -113,38 +114,4 @@ void	free_stack(t_stack **stack)
 		free(tmp);
 	}
 	free(stack);
-}
-
-
-t_stack	**ft_stack_createCopy(t_stack **copy_from)
-{
-	t_stack **new;
-	t_stack *v;
-	t_stack *h;
-
-	new = (t_stack **) malloc(sizeof(t_stack **));
-	h = *copy_from;
-	while (h)
-	{
-		v = ft_stacknew(h->nbr, NULL);
-		ft_stackadd_back(new, v);
-		h = h->next;
-	}
-	index_stack(new);
-	return (new);
-}
-
-
-t_stack	*ft_stack_nth(t_stack **s, long n)
-{
-	t_stack	*h;
-
-	h = *s;
-	while (h)
-	{
-		if (h->nbr == n)
-			return (h);
-		h = h->next;
-	}
-	return (h);
 }

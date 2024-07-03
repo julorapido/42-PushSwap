@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/02 17:11:21 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:05:31 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_stackadd_back(t_stack **stack, t_stack *new);
 int		ft_stacksize(t_stack *s);
 void	printList(t_stack *head);
 void	free_stack(t_stack **s);
-t_stack	**ft_stack_createCopy(t_stack **s);
 t_stack	*ft_stack_nth(t_stack **s, long v);
 
 // operations
@@ -75,7 +74,6 @@ int		quick_sort_b(t_stack **a, t_stack **b, int len);
 // utils
 int		get_dist(t_stack **s, int ix);
 int		is_sorted(t_stack **s);
-long	median(t_stack **a);
 void	index_stack(t_stack **s);
 t_stack	*get_next_min(t_stack **s);
 

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/02 15:17:14 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:03:29 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	init_stack(t_stack **s, int ac, char **av)
 {
 	int		i;
 	t_stack	*n;
-	t_stack *prev;
+	t_stack	*prev;
 	t_stack	*first_;
 
 	i = 1;
@@ -47,25 +47,24 @@ static void	call_sort(int len, t_stack **a, t_stack **b)
 		cq_n(a, b);
 	if (len > 5)
 		insertion_sort(a, b);
-	printf("=== STACK-A === \n");
-	printList(*a);
-	printf("=== STACK-B === \n");
-	printList(*b);
+	//printf("=== STACK-A === \n");
+	//printList(*a);
 }
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stack		**a;
 	t_stack		**b;
 	int			l;
 
-	if(argc < 2)
+	if (argc < 2)
 		return (-1);
 	a = (t_stack **) malloc(sizeof(t_stack **));
 	b = (t_stack **) malloc(sizeof(t_stack **));
 	if (!a || !b)
 		return (0);
-	*a = *b = NULL;
+	*a = NULL;
+	*b = NULL;
 	l = init_stack(a, argc, argv);
 	if (is_sorted(a))
 	{

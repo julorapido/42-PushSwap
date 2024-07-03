@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:03:39 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/01 18:07:25 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:12:50 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	qu_n(t_stack **a, t_stack **b)
 		return ;
 	dist = get_dist(a, get_min(a, -1));
 	if (dist == 1) // 1 0 2 3
-		r_ab(a, "ra\n");
+		s_ab(a, "sa\n");
 	else if (dist == 2)// 1 2 0 3
 	{
 		r_ab(a, "ra\n");
@@ -96,7 +96,7 @@ void	qu_n(t_stack **a, t_stack **b)
 	if (is_sorted(a))
 		return ;
 	// push a head to b [since head of a is the min, head wont be touched by sort 3]
-	p_ab(a, b, "pa\n");
+	p_ab(a, b, "pb\n");
 	th_n(a);
 	p_ab(b, a, "pa\n");
 }
@@ -110,7 +110,7 @@ void	cq_n(t_stack **a, t_stack **b)
 		return ;
 	dist = get_dist(a, get_min(a, -1));
 	if (dist == 1) // 1 0 2 3 4
-		r_ab(a, "ra\n");
+		s_ab(a, "sa\n");
 	else if (dist == 2)// 1 2 0 3 4
 	{
 		r_ab(a, "ra\n");
@@ -125,7 +125,7 @@ void	cq_n(t_stack **a, t_stack **b)
 		rr_ab(a, "rra\n");
 	if (is_sorted(a))
 		return ;
-	p_ab(a, b, "pa\n");
+	p_ab(a, b, "pb\n");
 	qu_n(a, b);
 	p_ab(b, a, "pa\n");
 }

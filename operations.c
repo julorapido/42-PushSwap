@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:11:04 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/02 14:44:04 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:51:44 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -20,10 +20,10 @@ void	p_ab(t_stack **from_, t_stack **to_, char *msg)
 {
 	t_stack	*head_from;
 	t_stack	*head_to;
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (ft_stacksize(*from_) == 0)
-		return;
+		return ;
 	head_to = *to_;
 	head_from = *from_;
 	temp = head_from;
@@ -51,14 +51,13 @@ void	p_ab(t_stack **from_, t_stack **to_, char *msg)
 // - Do nothing if there is only one or no elements.
 void	s_ab(t_stack **a_b, char *msg)
 {
-	t_stack *head;
+	t_stack	*head;
 	int		temp_nbr;
 	int		temp_indx;
 
 	head = *a_b;
 	if (ft_stacksize(*a_b) < 2 || !head || !(head->next))
 		return ;
-	
 	if (ft_strlen(msg) > 0)
 		write(1, msg, 3);
 	temp_nbr = head->nbr;
@@ -74,15 +73,14 @@ void	s_ab(t_stack **a_b, char *msg)
 // ====================================
 // - ShiftUp^ all elements of stack a by 1.
 // - The first element becomes the last one.
-void r_ab(t_stack **a_b, char *msg)
+void	r_ab(t_stack **a_b, char *msg)
 {
 	t_stack	*head;
-	t_stack *last_;
+	t_stack	*last_;
 
 	head = *a_b;
 	if (!head || ft_stacksize(*a_b) < 2)
 		return ;
-
 	if (ft_strlen(msg) > 0)
 		write(1, msg, 3);
 	last_ = ft_stacklast(*a_b);
@@ -103,7 +101,6 @@ void	rr_ab(t_stack **a_b, char *msg)
 
 	if (ft_stacksize(*a_b) < 2)
 		return ;
-
 	head = *a_b;
 	tail = ft_stacklast(head);
 	while (head)
