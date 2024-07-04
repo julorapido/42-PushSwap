@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:03:39 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/03 16:12:50 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:17:09 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,38 +37,38 @@ void	tw_n(t_stack **a)
 	head = *a;
 	if (head->nbr > (head->next)->nbr)
 		s_ab(a, "sa\n");
-	return;
+	return ;
 }
 
 // sort 3 nnmbers
+// 1. [0 1 2]
+// 2. [1 0 2]
+// 3. [0 2 1]
+// 4. [1 2 0]
+// 5. [2 0 1]
+// 6. [2 1 0]
 void	th_n(t_stack **a)
 {
 	t_stack	*i;
-	t_stack *j;
+	t_stack	*j;
 	t_stack	*k;
 
 	i = *a;
 	j = i->next;
 	k = j->next;
-	// 0 1 2
-	if ( ((i->nbr < j->nbr) && (j->nbr < k->nbr)) || (!i || !k || !j))
+	if (((i->nbr < j->nbr) && (j->nbr < k->nbr)) || (!i || !k || !j))
 		return ;
-	// 1 0 2
 	else if ((i->nbr < k->nbr && j->nbr < k->nbr) && (j->nbr < i->nbr))
 		s_ab(a, "sa\n");
-	// 0 2 1
 	else if ((i->nbr < j->nbr && j->nbr > k->nbr) && (i->nbr < k->nbr))
 	{
 		s_ab(a, "sa\n");
 		r_ab(a, "ra\n");
 	}
-	// 1 2 0
 	else if ((i->nbr < j->nbr) && (k->nbr < i->nbr))
 		rr_ab(a, "rra\n");
-	// 2 0 1
 	else if ((i->nbr > k->nbr) && (j->nbr < k->nbr))
 		r_ab(a, "ra\n");
-	// 2 1 0
 	else if ((i->nbr > j->nbr) && (j->nbr > k->nbr))
 	{
 		s_ab(a, "sa\n");
@@ -77,51 +77,57 @@ void	th_n(t_stack **a)
 }
 
 // sort 4 numbers
+// 1. [1 0 2 3]
+// 2. [1 2 0 3]
+// 3. [1 2 3 0]
 void	qu_n(t_stack **a, t_stack **b)
 {
-	int	dist;	
-	
+	int	dist;
+
 	if (is_sorted(a))
 		return ;
 	dist = get_dist(a, get_min(a, -1));
-	if (dist == 1) // 1 0 2 3
+	if (dist == 1)
 		s_ab(a, "sa\n");
-	else if (dist == 2)// 1 2 0 3
+	else if (dist == 2)
 	{
 		r_ab(a, "ra\n");
 		r_ab(a, "ra\n");
 	}
-	else if (dist == 3)// 1 2 3 0
+	else if (dist == 3)
 		rr_ab(a, "rra\n");
 	if (is_sorted(a))
 		return ;
-	// push a head to b [since head of a is the min, head wont be touched by sort 3]
 	p_ab(a, b, "pb\n");
 	th_n(a);
 	p_ab(b, a, "pa\n");
 }
 
 // sort 5 numbers
+// 1. [1 0 2 3 4]
+// 2. [1 2 0 3 4]
+// 3. [1 2 3 0 4]
+// 4. [1 2 3 4 0]
 void	cq_n(t_stack **a, t_stack **b)
 {
 	int	dist;	
-	
+
 	if (is_sorted(a))
 		return ;
 	dist = get_dist(a, get_min(a, -1));
-	if (dist == 1) // 1 0 2 3 4
+	if (dist == 1)
 		s_ab(a, "sa\n");
-	else if (dist == 2)// 1 2 0 3 4
+	else if (dist == 2)
 	{
 		r_ab(a, "ra\n");
 		r_ab(a, "ra\n");
 	}
-	else if (dist == 3)// 1 2 3 0 4
+	else if (dist == 3)
 	{
 		rr_ab(a, "rra\n");
 		rr_ab(a, "rra\n");
 	}
-	else if (dist == 4) // 1 2 3 4 0
+	else if (dist == 4)
 		rr_ab(a, "rra\n");
 	if (is_sorted(a))
 		return ;

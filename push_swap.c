@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/03 16:03:29 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:14:01 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static void	call_sort(int len, t_stack **a, t_stack **b)
 		cq_n(a, b);
 	if (len > 5)
 		insertion_sort(a, b);
-	//printf("=== STACK-A === \n");
-	//printList(*a);
 }
 
 int	main(int argc, char **argv)

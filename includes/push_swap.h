@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/03 16:05:31 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:20:35 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ typedef struct info_st
 
 typedef struct s_el
 {
-		int		index;
-		int		cost;
-		long	val_;
-}		t_el;
+	int		index;
+	int		cost;
+	long	val_;
+}	t_el;
 
 typedef struct s_stack
 {
-		long nbr;
-		long index;
-		struct s_stack* next;
-		struct s_stack* prev;
-		long	stack_i_max;
-}		t_stack;
+	long			nbr;
+	long			index;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+	long			stack_i_max;
+}	t_stack;
 
 // t_stack.c
 t_stack	*ft_stacknew(int value, t_stack *pre);
@@ -69,7 +69,6 @@ void	cq_n(t_stack **a, t_stack **b);
 void	insertion_sort(t_stack **a, t_stack **b);
 int		quick_sort_a(t_stack **a, t_stack **b, int len);
 int		quick_sort_b(t_stack **a, t_stack **b, int len);
-
 
 // utils
 int		get_dist(t_stack **s, int ix);

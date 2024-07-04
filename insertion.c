@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:46:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/03 16:10:22 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:15:01 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,9 @@ static void	insert_x(t_stack **from, t_stack *x, t_stack **insert_to, int L)
 		ll = ft_stacksize(*insert_to);
 		a = count_e(insert_to, x->nbr);
 		if (a < (L / 2) - 1)
-		{
 			i_x_stack_y(a, from, insert_to);
-			//(*d) += (a * 2) + 1;
-		}
 		else
-		{
 			i_x_stack_z(ll, a, from, insert_to);
-			//*d += ((LL - a) * 2) + 1;
-		}
 	}
 }
 
@@ -110,6 +104,5 @@ void	insertion_sort(t_stack **a, t_stack **b)
 	}
 	while (*b)
 		p_ab(b, a, "pa\n");
-	//printf("TOTAL OPERATIONS = %d \n", *d);
 	free(d);
 }
