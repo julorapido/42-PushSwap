@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:46:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 14:15:01 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:24:56 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	insert_x(t_stack **from, t_stack *x, t_stack **insert_to, int L)
 	{
 		ll = ft_stacksize(*insert_to);
 		a = count_e(insert_to, x->nbr);
-		if (a < (L / 2) - 1)
+		if (a < (L / 2))
 			i_x_stack_y(a, from, insert_to);
 		else
 			i_x_stack_z(ll, a, from, insert_to);
@@ -89,14 +89,11 @@ static void	insert_x(t_stack **from, t_stack *x, t_stack **insert_to, int L)
 void	insertion_sort(t_stack **a, t_stack **b)
 {
 	int		l;
-	int		*d;
 	t_stack	*h;
 
 	p_ab(a, b, "pb\n");
 	l = ft_stacksize(*a);
 	h = *a;
-	d = malloc (1 * sizeof(int));
-	*d = 0;
 	while (h)
 	{
 		insert_x(a, h, b, l);
@@ -104,5 +101,4 @@ void	insertion_sort(t_stack **a, t_stack **b)
 	}
 	while (*b)
 		p_ab(b, a, "pa\n");
-	free(d);
 }

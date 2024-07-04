@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 14:20:35 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:11:52 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	th_n(t_stack **a);
 void	qu_n(t_stack **a, t_stack **b);
 void	cq_n(t_stack **a, t_stack **b);
 void	insertion_sort(t_stack **a, t_stack **b);
+void	radix_sort(t_stack **a, t_stack **b);
 int		quick_sort_a(t_stack **a, t_stack **b, int len);
 int		quick_sort_b(t_stack **a, t_stack **b, int len);
 
@@ -75,5 +76,6 @@ int		get_dist(t_stack **s, int ix);
 int		is_sorted(t_stack **s);
 void	index_stack(t_stack **s);
 t_stack	*get_next_min(t_stack **s);
+long	median(t_stack **a);
 
 #endif

@@ -1,5 +1,5 @@
 NAME = push_swap
-SRC = push_swap.c t_stack.c sort.c insertion.c operations.c utils.c
+SRC = push_swap.c t_stack.c sort.c insertion.c operations.c utils.c radix.c
 SRC_OBJ = $(SRC:.c=.o)
 
 FLAGS = -Wall -Wextra 
