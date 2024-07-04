@@ -6,11 +6,10 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:03:39 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 14:17:09 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:29:35 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// https://techy.asia/posts/how-to-solve-push-swap/
 #include "push_swap.h"
 
 static int	get_min(t_stack **stack, int val)

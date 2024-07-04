@@ -6,11 +6,63 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 14:14:01 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:05:44 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	check_args(int *pos_i_arr, int *neg_i_arr, char **args)
+{
+	int i;
+	int	j;
+	int	n;
+
+	i = 1;
+	while (args[i])
+	{
+		j = 0;
+		while (args[i][j] != '\0')
+		{
+			if (ft_isdigit((int)args[i][j]) == 0
+				&& args[i][j] != '-')
+				return (-1);
+			j++;
+		}
+		n = ft_atoi(args[i]);
+		if ((pos_i_arr[n] && n >= 0) || (neg_i_arr[n] && n < 0))
+			return (-1);
+		if (n >= 0)
+			pos_i_arr[n] = 1;
+		else
+			neg_i_arr[n] = 1;
+		i++;
+	}
+	return (1);
+}
+
+static int	init_i_arrs(char **args)
+{
+	int	*pos_arr;
+	int	*neg_arr;
+	int	i;
+
+	pos_arr = (int *) malloc(10000 * sizeof(int));
+	neg_arr = (int *) malloc(10000 * sizeof(int));
+	if(!pos_arr || !neg_arr)
+		return (-1);
+	i = 0;
+	while (i < 10000)
+	{
+		pos_arr[i] = 0;
+		neg_arr[i] = 0;
+		i++;
+	}
+	i = check_args(pos_arr, neg_arr, args);
+	free(pos_arr);
+	free(neg_arr);
+	return (i);
+}
 
 static int	init_stack(t_stack **s, int ac, char **av)
 {
@@ -55,7 +107,7 @@ int	main(int argc, char **argv)
 	t_stack		**b;
 	int			l;
 
-	if (argc < 2)
+	if (argc < 2 || init_i_arrs(argv) == -1)
 		return (-1);
 	a = (t_stack **) malloc(sizeof(t_stack **));
 	b = (t_stack **) malloc(sizeof(t_stack **));
