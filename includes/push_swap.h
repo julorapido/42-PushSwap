@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 16:11:52 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:07:24 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ t_stack	*ft_stacknew(int value, t_stack *pre);
 void	ft_stackadd_front(t_stack **stack, t_stack *new);
 t_stack	*ft_stacklast(t_stack *head);
 void	ft_stackadd_back(t_stack **stack, t_stack *new);
-int		ft_stacksize(t_stack *s);
+long	ft_stacksize(t_stack *s);
 void	printList(t_stack *head);
 void	free_stack(t_stack **s);
+void	printTList(t_stack **a, t_stack **b);
 t_stack	*ft_stack_nth(t_stack **s, long v);
 
 // operations
@@ -70,6 +71,9 @@ void	insertion_sort(t_stack **a, t_stack **b);
 void	radix_sort(t_stack **a, t_stack **b);
 int		quick_sort_a(t_stack **a, t_stack **b, int len);
 int		quick_sort_b(t_stack **a, t_stack **b, int len);
+void	alg(t_stack **a, t_stack **b);
+void	insert_n(t_stack **a, t_stack **b, long spin);
+long	count_e(t_stack **b, long v_);
 
 // utils
 int		get_dist(t_stack **s, int ix);

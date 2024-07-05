@@ -6,18 +6,20 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:46:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 17:24:56 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:13:05 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static long	count_e(t_stack **b, long v_)
+long	count_e(t_stack **b, long v_)
 {
 	t_stack	*h;
 	long	j;
 	long	v_i;
 
+	if (v_ >= (*b)->nbr)
+		return (0);
 	j = 0;
 	h = *b;
 	v_i = h->nbr;
@@ -32,10 +34,15 @@ static long	count_e(t_stack **b, long v_)
 	return (j);
 }
 
-static void	i_x_stack_y(long a, t_stack **frm_, t_stack **to_)
+void	ins_top(long a, t_stack **frm_, t_stack **to_)
 {
 	long	b;
 
+	if ((*frm_)->nbr >= (*to_)->nbr)
+	{
+		p_ab(frm_, to_, "pb\n");
+		return ;
+	}
 	b = 0;
 	while (b < a)
 	{
@@ -50,10 +57,12 @@ static void	i_x_stack_y(long a, t_stack **frm_, t_stack **to_)
 	}
 }
 
-static void	i_x_stack_z(int ll, long a, t_stack **frm_, t_stack **to_)
+void	ins_bot(long a, t_stack **frm_, t_stack **to_)
 {
 	long	b;
+	long	ll;
 
+	ll = ft_stacksize(*to_);
 	b = (ll - a);
 	while (b > 0)
 	{
@@ -68,37 +77,19 @@ static void	i_x_stack_z(int ll, long a, t_stack **frm_, t_stack **to_)
 	}
 }
 
-static void	insert_x(t_stack **from, t_stack *x, t_stack **insert_to, int L)
+void	insert_n(t_stack **a, t_stack **b, long spin)
 {
-	long	a;
-	int		ll;
+	long	c;
 
-	if (x->nbr >= (*insert_to)->nbr)
-		p_ab(from, insert_to, "pb\n");
+	while (spin > 0)
+	{
+		r_ab(a, "ra\n");
+		spin--;
+	}
+	c = count_e(b, (*a)->nbr);
+	if (c <= ft_stacksize(*b) / 2)
+		ins_top(c, a, b);
 	else
-	{
-		ll = ft_stacksize(*insert_to);
-		a = count_e(insert_to, x->nbr);
-		if (a < (L / 2))
-			i_x_stack_y(a, from, insert_to);
-		else
-			i_x_stack_z(ll, a, from, insert_to);
-	}
+		ins_bot(c, a, b);
 }
 
-void	insertion_sort(t_stack **a, t_stack **b)
-{
-	int		l;
-	t_stack	*h;
-
-	p_ab(a, b, "pb\n");
-	l = ft_stacksize(*a);
-	h = *a;
-	while (h)
-	{
-		insert_x(a, h, b, l);
-		h = *a;
-	}
-	while (*b)
-		p_ab(b, a, "pa\n");
-}

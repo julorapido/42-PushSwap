@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:25:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 15:46:52 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:07:13 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	ft_stackadd_back(t_stack **stack, t_stack *new)
 }
 
 // Returns the size of the Linked List
-int	ft_stacksize(t_stack *s)
+long	ft_stacksize(t_stack *s)
 {
-	size_t	i;
+	long	i;
 	t_stack	*head;
 
 	head = s;
@@ -91,7 +91,6 @@ void	printList(t_stack *head)
 	t_stack	*tmp;
 
 	tmp = head;
-	//printf("=//=//=//=//=//=//=//=//=//=");
 	while (tmp)
 	{
 		if (tmp -> nbr)
@@ -100,6 +99,33 @@ void	printList(t_stack *head)
 	}
 	printf("\n");
 }
+
+void	printTList(t_stack **a, t_stack **b)
+{
+	printf("======= STACK A ========= \n");
+	printList(*a);
+	printf("======= STACK B ========= \n");
+	printList(*b);
+}
+
+/*t_stack	*ft_stack_nth(t_stack **s, long n)
+{
+	t_stack *h;
+	long	i;	long	j;
+
+	if(n == 0)
+		return (*s);
+	h = *s;
+	i = 0;
+	while (h)
+	{
+		if (i == n)
+			return (h);
+		h = h->next;
+		i++;
+	}
+	return (h);
+}*/
 
 void	free_stack(t_stack **stack)
 {
