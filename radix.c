@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:51:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 17:44:51 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:41:14 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,40 @@ int	find_max_bit(t_stack *a)
 	return (0);
 }
 
+void	pre_tri(t_stack **a, t_stack **b)
+{
+	long L = (median(a));
+	t_stack	*h;
+	long	j;
+
+	// printf("PRE-TRI %ld \n", median(a));
+	while (h)
+	{
+		if (h->nbr <= L)
+		{
+			p_ab(a, b, "pb\n");
+			r_ab(b, "rb\n");
+		}else
+		{
+			p_ab(a, b, "pb\n");
+		}
+		h = *a;
+	}
+	while (*b)
+		p_ab(b, a, "pa\n");
+}
+
+
 void	radix_sort(t_stack **a, t_stack **b)
 {
 	long	max_b;
 	long	i;
 	long	j;
 	int		L;
+	int		o;
 
+	//pre_tri(a, b);
+	o = 0;
 	L = ft_stacksize(*a);
 	max_b = find_max_bit(*a);
 	i = 0;
@@ -94,9 +121,14 @@ void	radix_sort(t_stack **a, t_stack **b)
 				p_ab(a, b, "pb\n");
 			else
 				r_ab(a, "ra\n");
+			o++;
 		}
 		while (*b)
+		{
 			p_ab(b, a, "pa\n");
+			o++;
+		}
 		i++;
 	}
+	printf("%d OPERATIONS [RADIX] ! \n", o);
 }

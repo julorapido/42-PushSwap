@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:46:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/05 17:13:05 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:20:18 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long	count_e(t_stack **b, long v_)
 		return (0);
 	j = 0;
 	h = *b;
-	v_i = h->nbr;
+	v_i = h->nbr; 
 	while (h)
 	{
 		if (v_ >= h->nbr && v_ <= v_i)
@@ -77,19 +77,32 @@ void	ins_bot(long a, t_stack **frm_, t_stack **to_)
 	}
 }
 
-void	insert_n(t_stack **a, t_stack **b, long spin)
+void	insert_n(t_stack **a, t_stack **b, long spin, int insert_top, long dbl_spin)
 {
 	long	c;
+	long	c_;
 
-	while (spin > 0)
+	c = c_ = count_e(b, (*a)->nbr);
+	if (insert_top)
 	{
-		r_ab(a, "ra\n");
-		spin--;
+		while (spin > 0)
+		{
+			r_ab(a, "ra\n");
+			spin--;
+		}
+	}
+	else
+	{
+		spin = ABS(ft_stacksize(*a) - spin);
+		while (spin > 0)
+		{
+			rr_ab(a, "rra\n");
+			spin--;
+		}		
 	}
 	c = count_e(b, (*a)->nbr);
-	if (c <= ft_stacksize(*b) / 2)
+	if (c_ <= ft_stacksize(*b) / 2)
 		ins_top(c, a, b);
 	else
 		ins_bot(c, a, b);
-}
-
+}	

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/05 13:06:43 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:28:19 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static int	init_i_arrs(char **args)
 }
 
 static int	init_stack(t_stack **s, int ac, char **av)
+
 {
 	int		i;
 	t_stack	*n;
@@ -99,7 +100,7 @@ static void	call_sort(int len, t_stack **a, t_stack **b)
 		cq_n(a, b);
 	if (len > 5)
 		alg(a, b);
-	// radix_sort(a, b);
+	//radix_sort(a, b);
 }
 
 int	main(int argc, char **argv)
