@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/09 16:44:46 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:23:31 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	insert_n(t_stack **a, t_stack **b, long spin, int enable_dblRt, long dbl_sp
 //void	insert_n(t_stack **a, t_stack **b, long spin, int enable_dblRt);
 long	count_e(t_stack **b, long v_);
 void	quick_sort(t_stack **a, t_stack **b);
+long	count_e_alt(t_stack **b, long v_);
 
 // utils
 int		get_dist(t_stack **s, int ix);

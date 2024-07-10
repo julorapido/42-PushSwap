@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:46:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/09 17:20:18 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:29:42 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,35 @@ long	count_e(t_stack **b, long v_)
 	}	
 	return (j);
 }
+
+long	count_e_alt(t_stack **b, long v_)
+{
+	t_stack	*h;
+	long	j;
+	long	saved_prev;
+	long	ix_;
+
+	if (v_ >= (*b)->nbr)
+		return (0);
+	j = 0;
+	h = *b;
+	saved_prev = -100000; 
+	while (h)
+	{
+		if (v_ >= h->nbr && h->nbr > saved_prev)
+		{
+			printf("%ld on top of %ld \n", v_, h->nbr);
+			ix_ = j;
+			saved_prev = h->nbr;
+		}
+		j++;
+		h = h->next;
+	}	
+	return (ix_ - 1);
+}
+
+
+
 
 void	ins_top(long a, t_stack **frm_, t_stack **to_)
 {
@@ -83,14 +112,14 @@ void	insert_n(t_stack **a, t_stack **b, long spin, int insert_top, long dbl_spin
 	long	c_;
 
 	c = c_ = count_e(b, (*a)->nbr);
-	if (insert_top)
-	{
+	/*if (insert_top)
+	{*/
 		while (spin > 0)
 		{
 			r_ab(a, "ra\n");
 			spin--;
 		}
-	}
+	/*}
 	else
 	{
 		spin = ABS(ft_stacksize(*a) - spin);
@@ -99,7 +128,7 @@ void	insert_n(t_stack **a, t_stack **b, long spin, int insert_top, long dbl_spin
 			rr_ab(a, "rra\n");
 			spin--;
 		}		
-	}
+	}*/
 	c = count_e(b, (*a)->nbr);
 	if (c_ <= ft_stacksize(*b) / 2)
 		ins_top(c, a, b);
