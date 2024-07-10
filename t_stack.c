@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:25:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/05 17:07:13 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:48:48 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,25 @@ void	printTList(t_stack **a, t_stack **b)
 	}
 	return (h);
 }*/
+
+
+t_stack	**ft_stack_createCopy(t_stack **copy_from)
+{
+	t_stack **new;
+	t_stack *v;
+	t_stack *h;
+
+	new = (t_stack **) malloc(sizeof(t_stack **));
+	h = *copy_from;
+	while (h)
+	{
+		v = ft_stacknew(h->nbr, NULL);
+		ft_stackadd_back(new, v);
+		h = h->next;
+	}
+	index_stack(new);
+	return (new);
+}
 
 void	free_stack(t_stack **stack)
 {

@@ -6,13 +6,13 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:46:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/10 15:29:42 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:52:15 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	count_e(t_stack **b, long v_)
+/*long	count_e(t_stack **b, long v_)
 {
 	t_stack	*h;
 	long	j;
@@ -112,14 +112,14 @@ void	insert_n(t_stack **a, t_stack **b, long spin, int insert_top, long dbl_spin
 	long	c_;
 
 	c = c_ = count_e(b, (*a)->nbr);
-	/*if (insert_top)
-	{*/
+	if (insert_top)
+	{
 		while (spin > 0)
 		{
 			r_ab(a, "ra\n");
 			spin--;
 		}
-	/*}
+	}
 	else
 	{
 		spin = ABS(ft_stacksize(*a) - spin);
@@ -128,10 +128,10 @@ void	insert_n(t_stack **a, t_stack **b, long spin, int insert_top, long dbl_spin
 			rr_ab(a, "rra\n");
 			spin--;
 		}		
-	}*/
+	}
 	c = count_e(b, (*a)->nbr);
 	if (c_ <= ft_stacksize(*b) / 2)
 		ins_top(c, a, b);
 	else
 		ins_bot(c, a, b);
-}	
+}	*/

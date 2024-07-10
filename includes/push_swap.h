@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/10 15:23:31 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:53:05 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_stack	*ft_stacklast(t_stack *head);
 void	ft_stackadd_back(t_stack **stack, t_stack *new);
 long	ft_stacksize(t_stack *s);
 void	printList(t_stack *head);
+t_stack	**ft_stack_createCopy(t_stack **copy_from);
 void	free_stack(t_stack **s);
 void	printTList(t_stack **a, t_stack **b);
 t_stack	*ft_stack_nth(t_stack **s, long v);
@@ -71,6 +72,8 @@ void	insert_n(t_stack **a, t_stack **b, long spin, int enable_dblRt, long dbl_sp
 long	count_e(t_stack **b, long v_);
 void	quick_sort(t_stack **a, t_stack **b);
 long	count_e_alt(t_stack **b, long v_);
+
+void	z_sort(t_stack **a, t_stack **b);
 
 // utils
 int		get_dist(t_stack **s, int ix);

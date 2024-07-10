@@ -6,12 +6,13 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:45:20 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/10 15:23:50 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:49:56 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
 long	min_max_s(t_stack **s, int is_min)
 {
 	t_stack *h;
@@ -162,4 +163,4 @@ void	alg(t_stack **a, t_stack **b)
 	}
 	printTList(a, b);
 	printf("%d OPERATIONS \n", oo);
-}
+}*/

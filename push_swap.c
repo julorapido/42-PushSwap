@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/10 16:20:08 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:51:42 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void	call_sort(int len, t_stack **a, t_stack **b)
 	if (len == 5)
 		cq_n(a, b);
 	if (len > 5)
-		radix_sort(a, b);	
+		z_sort(a, b);
 	//alg(a, b);
 	//radix_sort(a, b);
 }
