@@ -6,18 +6,18 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/15 16:07:13 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:32:16 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
-static int	check_args(int *pos_i_arr, int *neg_i_arr, char **args)
+static int	check_args(long *pos_i_arr, long *neg_i_arr, char **args)
 {
-	int i;
-	int	j;
-	int	n;
+	long	i;
+	long	j;
+	long	n;
 
 	i = 1;
 	while (args[i])
@@ -30,13 +30,13 @@ static int	check_args(int *pos_i_arr, int *neg_i_arr, char **args)
 				return (-1);
 			j++;
 		}
-		n = ft_atoi(args[i]);
+		n = ft_atoi_l(args[i]);
 		if ((pos_i_arr[n] && n >= 0) || (neg_i_arr[n] && n < 0))
 			return (-1);
 		if (n >= 0)
-			pos_i_arr[n] = 1;
+			pos_i_arr[(int) n] = 1;
 		else
-			neg_i_arr[n] = 1;
+			neg_i_arr[(int) n] = 1;
 		i++;
 	}
 	return (1);
@@ -44,22 +44,23 @@ static int	check_args(int *pos_i_arr, int *neg_i_arr, char **args)
 
 static int	init_i_arrs(char **args)
 {
-	int	*pos_arr;
-	int	*neg_arr;
-	int	i;
+	long	*pos_arr;
+	long	*neg_arr;
+	long	i;
 
-	pos_arr = (int *) malloc(10000 * sizeof(int));
-	neg_arr = (int *) malloc(10000 * sizeof(int));
+	pos_arr = (long *) malloc(1000000 * sizeof(long));
+	neg_arr = (long *) malloc(1000000 * sizeof(long));
 	if(!pos_arr || !neg_arr)
 		return (-1);
 	i = 0;
-	while (i < 10000)
+	while (i < 1000000)
 	{
 		pos_arr[i] = 0;
 		neg_arr[i] = 0;
 		i++;
 	}
 	i = check_args(pos_arr, neg_arr, args);
+	return ;
 	free(pos_arr);
 	free(neg_arr);
 	return (i);
@@ -78,7 +79,7 @@ static int	init_stack(t_stack **s, int ac, char **av)
 	while (av[i])
 	{
 		prev = n;
-		n = ft_stacknew(ft_atoi(av[i]), prev);
+		n = ft_stacknew((long) ft_atoi(av[i]), prev);
 		if (i == 1)
 			first_ = n;
 		ft_stackadd_back(s, n);

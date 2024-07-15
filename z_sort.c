@@ -6,13 +6,13 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:45:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/15 16:06:31 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:26:08 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	init_bbl_sort(t_stack **a, long *arr)
+void	init_bbl_sort(t_stack **a, long *arr)
 {
 	t_stack	*h;
 	long	i;
@@ -43,7 +43,7 @@ static void	init_bbl_sort(t_stack **a, long *arr)
 	}
 }
 
-static long	indx_from_arr(long *arr, long en, long v__)
+long	indx_from_arr(long *arr, long en, long v__)
 {
 	long	i;
 
@@ -57,7 +57,7 @@ static long	indx_from_arr(long *arr, long en, long v__)
 	return (i);
 }
 
-static long	get_max_index(t_stack **b)
+long	get_max_index(t_stack **b)
 {
 	t_stack	*h;
 	long	n;
@@ -80,7 +80,7 @@ static long	get_max_index(t_stack **b)
 	return (v__j);
 }
 
-static long	get_max(t_stack **b)
+long	get_max(t_stack **b)
 {
 	t_stack	*h;
 	long	n;
@@ -127,7 +127,7 @@ Once STACK-A is empty we get back elements from STACK-B
 =============================================================================
 */
 
-static void	back_in_a(t_stack **a, t_stack **b)
+void	back_in_a(t_stack **a, t_stack **b)
 {
 	long	l;
 	t_stack	*h;

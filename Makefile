@@ -14,7 +14,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 INCLUDES = -I./includes -I$(LIBFT_DIR)
 
 all: $(LIBFT) $(NAME)
-bonus: $(LIBFT) $(BONUS)
+bonus: $(BONUS)
 
 $(NAME): $(SRCS_OBJS)
 	gcc $(FLAGS) $(SRC) $(INCLUDES) -o $(NAME) $(LIBFT)
