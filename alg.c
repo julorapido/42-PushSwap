@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:45:20 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/10 16:49:56 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:38:17 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static long	calc_n_insertion(long v, t_stack **a, t_stack **b)
 	if (x <= l / 2)
 		return x + 1; //((x * 2) + 1);
 	else
-		return (((ft_stacksize(*b) - x)) + 2);//(((ft_stacksize(*b) - x) * 2) + 2);
+		return (((ft_stacksize(*b) - x)) + 2);
+			//(((ft_stacksize(*b) - x) * 2) + 2);
 }
 
 
@@ -119,13 +120,15 @@ void	alg(t_stack **a, t_stack **b)
 		long double_spin, saved_dblSpin = 0;
 		while (h)
 		{
-			insert_and_spin_top = ( ((j <= ft_stacksize(*a) / 2) && (count_e(b, h->nbr) <= ft_stacksize(*b) / 2)))
+			insert_and_spin_top = ( ((j <= ft_stacksize(*a) / 2) && 
+						(count_e(b, h->nbr) <= ft_stacksize(*b) / 2)))
 						|| 
-				(( (j > ft_stacksize(*a) / 2) && (count_e(b, h->nbr) > ft_stacksize(*b) / 2)))
+				(( (j > ft_stacksize(*a) / 2) && 
+				   	(count_e(b, h->nbr) > ft_stacksize(*b) / 2)))
 				? 1 : 0;
 			long c = calc_n_insertion(h->nbr, a, b);
-			long d = ( j <= ft_stacksize(*a) / 2 ?  (j) : (ft_stacksize(*a) - j) );
-
+			long d = ( j <= ft_stacksize(*a) / 2 ?  
+					(j) : (ft_stacksize(*a) - j) );
 			price = c + d;
 			double_spin = 0;
 			if (insert_and_spin_top && price > 2)
@@ -134,8 +137,10 @@ void	alg(t_stack **a, t_stack **b)
 				if (c > d)
 					double_spin = ((c - 1) / 2) >= d ? d : ((c - 1) / 2);
 			}
-			//printf("-insert %ld in-B costs |%d|  [%ld $] (%ld spin && ct_e %ld) %ld \n",
-			//		h->nbr, insert_and_spin_top, price - double_s			//if ((c + d) - double_spin < price)
+			//printf("-insert %ld in-B costs |%d| .
+					[%ld $] (%ld spin && ct_e %ld) %ld \n",
+			//		h->nbr, insert_and_spin_top,
+					price - double_s//if ((c + d) - double_spin < price)
 			//	price = (c + d) - double_spin;pin, d, c, double_spin);
 			if ((c + d) - double_spin < v)
 			{
@@ -151,9 +156,12 @@ void	alg(t_stack **a, t_stack **b)
 			j++;
 			h = h->next;
 		}
-		//printf("{>>>>>> INSERT [%ld-nth | %ld$] (%ld spin & %ld dbl_spin) <<<<<<<}\n", nth_ + 1, v, nth_, saved_dblSpin);	
+		//printf("{>>>>>> INSERT [%ld-nth | %ld$] 
+			(%ld spin & %ld dbl_spin) <<<<<<<}\n", 
+					nth_ + 1, v, nth_, saved_dblSpin);	
 		oo += v;
-		insert_n(a, b, nth_, (j <= (ft_stacksize(*a) / 2)) ? (1) : (0), double_spin);
+		insert_n(a, b, nth_, (j <= (ft_stacksize(*a) / 2)) 
+					? (1) : (0), double_spin);
 		i++;
 	}
 	while (*b)
@@ -163,4 +171,227 @@ void	alg(t_stack **a, t_stack **b)
 	}
 	printTList(a, b);
 	printf("%d OPERATIONS \n", oo);
-}*/
+
+
+long	count_e(t_stack **b, long v_)
+{
+	t_stack	*h;
+	long	j;
+	long	v_i;
+
+	if (v_ >= (*b)->nbr)
+		return (0);
+	j = 0;
+	h = *b;
+	v_i = h->nbr; 
+	while (h)
+	{
+		if (v_ >= h->nbr && v_ <= v_i)
+			return (j);
+		j++;
+		v_i = h->nbr;
+		h = h->next;
+	}	
+	return (j);
+}
+
+long	count_e_alt(t_stack **b, long v_)
+{
+	t_stack	*h;
+	long	j;
+	long	saved_prev;
+	long	ix_;
+
+	if (v_ >= (*b)->nbr)
+		return (0);
+	j = 0;
+	h = *b;
+	saved_prev = -100000; 
+	while (h)
+	{
+		if (v_ >= h->nbr && h->nbr > saved_prev)
+		{
+			printf("%ld on top of %ld \n", v_, h->nbr);
+			ix_ = j;
+			saved_prev = h->nbr;
+		}
+		j++;
+		h = h->next;
+	}	
+	return (ix_ - 1);
+}
+
+
+
+
+void	ins_top(long a, t_stack **frm_, t_stack **to_)
+{
+	long	b;
+
+	if ((*frm_)->nbr >= (*to_)->nbr)
+	{
+		p_ab(frm_, to_, "pb\n");
+		return ;
+	}
+	b = 0;
+	while (b < a)
+	{
+		r_ab(to_, "rb\n");
+		b++;
+	}
+	p_ab(frm_, to_, "pb\n");
+	while (b > 0)
+	{
+		rr_ab(to_, "rrb\n");
+		b--;
+	}
+}
+
+void	ins_bot(long a, t_stack **frm_, t_stack **to_)
+{
+	long	b;
+	long	ll;
+
+	ll = ft_stacksize(*to_);
+	b = (ll - a);
+	while (b > 0)
+	{
+		rr_ab(to_, "rrb\n");
+		b--;
+	}
+	p_ab(frm_, to_, "pb\n");
+	while (b < (ll - a) + 1)
+	{
+		r_ab(to_, "rb\n");
+		b++;
+	}
+}
+
+void	insert_n(t_stack **a, t_stack **b, long spin, int insert_top, long dbl_spin)
+{
+	long	c;
+	long	c_;
+
+	c = c_ = count_e(b, (*a)->nbr);
+	if (insert_top)
+	{
+		while (spin > 0)
+		{
+			r_ab(a, "ra\n");
+			spin--;
+		}
+	}
+	else
+	{
+		spin = ABS(ft_stacksize(*a) - spin);
+		while (spin > 0)
+		{
+			rr_ab(a, "rra\n");
+			spin--;
+		}		
+	}
+	c = count_e(b, (*a)->nbr);
+	if (c_ <= ft_stacksize(*b) / 2)
+		ins_top(c, a, b);
+	else
+		ins_bot(c, a, b);
+}
+
+int	significant_bit_n(long n)
+{
+	int	msb;
+	if (n == 0)
+		return 0;
+
+    msb = 0;
+    n = n / 2;
+    while (n != 0)
+	{
+        n /= 2;
+        msb++;
+    }
+    return (1 << msb);
+}
+
+int	max_bit_instack(t_stack **a)
+{
+	t_stack	*h;
+	int		j;
+	int		max;
+
+	max = 0;
+	h = *a;
+	while (h)
+	{
+		j = significant_bit_n(h->nbr);
+		if (j > max)
+			max = j;
+		h = h->next;
+	}
+	return (max);
+}
+
+int	read_bit(int val, int bit)
+{
+	return ((val >> bit) & 1);
+}
+
+int	find_max_bit(t_stack *a)
+{
+	long	max_v;
+	int		i;
+
+	max_v = 0;
+	while (a)
+	{
+		if (max_v < a->nbr)
+			max_v = a->nbr;
+		a = a->next;
+	}
+	i = 12;
+	while (i >= 0)
+	{
+		if (read_bit(max_v, i))
+			return (i);
+		i--;
+	}
+	return (0);
+}
+
+
+
+void	radix_sort(t_stack **a, t_stack **b)
+{
+	long	max_b;
+	long	i;
+	long	j;
+	int		L;
+	int		o;
+
+	o = 0;
+	L = ft_stacksize(*a);
+	max_b = find_max_bit(*a);
+	i = 0;
+	while (i < max_b)
+	{
+		if (is_sorted(a))
+			return ;
+		j = 0;
+		while (j++ < L)
+		{
+			if ((((*a)->nbr >> i) & 1) == 0)
+				p_ab(a, b, "pb\n");
+			else
+				r_ab(a, "ra\n");
+			o++;
+		}
+		while (*b)
+		{
+			p_ab(b, a, "pa\n");
+			o++;
+		}
+		i++;
+	}
+}
+
+*/

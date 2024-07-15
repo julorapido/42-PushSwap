@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:11:04 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/09 15:28:43 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/12 12:36:39 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -118,6 +118,7 @@ void	rr_ab(t_stack **a_b, char *msg)
 	*a_b = tail;
 }
 
+/*
 void	rrr_ab(t_stack **a, t_stack **b)
 {
 	r_ab(a, "");
@@ -125,10 +126,9 @@ void	rrr_ab(t_stack **a, t_stack **b)
 	write(1, "rr\n", 3);
 }
 
-
 void	rvrr_ab(t_stack **a, t_stack **b)
 {
 	rr_ab(a, "");
 	rr_ab(b, "");
 	write(1, "rrr\n", 4);
-}
+}*/

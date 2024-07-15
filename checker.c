@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/15 16:07:13 by jsaintho         ###   ########.fr       */
+/*   Created: 2024/07/15 12:10:19 by jsaintho          #+#    #+#             */
+/*   Updated: 2024/07/15 15:29:02 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 static int	check_args(int *pos_i_arr, int *neg_i_arr, char **args)
 {
-	int i;
+	int	i;
 	int	j;
 	int	n;
 
@@ -50,7 +49,7 @@ static int	init_i_arrs(char **args)
 
 	pos_arr = (int *) malloc(10000 * sizeof(int));
 	neg_arr = (int *) malloc(10000 * sizeof(int));
-	if(!pos_arr || !neg_arr)
+	if (!pos_arr || !neg_arr)
 		return (-1);
 	i = 0;
 	while (i < 10000)
@@ -89,50 +88,110 @@ static int	init_stack(t_stack **s, int ac, char **av)
 	return (i - 1);
 }
 
-static void	call_sort(int len, t_stack **a, t_stack **b)
+static int	run_operation(char *op, t_stack **a, t_stack **b)
 {
-	long	start;
-	long	end;
+	if (!(ft_strcmp(op, "sa")))
+	{
+		s_ab(a, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "sb")))
+	{
+		s_ab(b, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "ss")))
+	{
+		s_ab(a, "");
+		s_ab(b, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "pa")))
+	{
+		p_ab(b, a, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "pb")))
+	{
+		p_ab(a, b, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "ra")))
+	{
+		r_ab(a, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "rb")))
+	{
+		r_ab(b, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "rr")))
+	{
+		r_ab(a, "");
+		r_ab(b, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "rra")))
+	{
+		rr_ab(a, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "rrb")))
+	{
+		rr_ab(b, "");
+		return (0);
+	}	
+	if (!(ft_strcmp(op, "rrr")))
+	{
+		rr_ab(a, "");
+		rr_ab(b, "");
+		return (0);
+	}
+	return (1);
+}
 
-	start = 0;
-	end = 15;
-	if (ft_stacksize(*a) > 100)
-		end = 30;
-	if (len == 2)
-		tw_n(a);
-	if (len == 3)
-		th_n(a);
-	if (len == 4)
-		qu_n(a, b);
-	if (len == 5)
-		cq_n(a, b);
-	if (len > 5)
-		z_sort(a, b, start, end);
+static void	check(t_stack **a, t_stack **b)
+{
+	if (!is_sorted(a))
+		write(1 , "KO\n", 3);
+	if (is_sorted(a))
+		write(1, "OK\n", 3);
+	free_stack(a);
+	free_stack(b);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack		**a;
 	t_stack		**b;
-	int			l;
+	char		*line;
 
-	if (argc < 2 || init_i_arrs(argv) == -1)
+	if (argc < 2)
+		return (-1);	
+	if (init_i_arrs(argv) == -1)
+	{
+		write(1, "Error\n", 6);
 		return (-1);
+	}
 	a = (t_stack **) malloc(sizeof(t_stack **));
 	b = (t_stack **) malloc(sizeof(t_stack **));
 	if (!a || !b)
 		return (0);
 	*a = NULL;
 	*b = NULL;
-	l = init_stack(a, argc, argv);
-	if (is_sorted(a))
+	init_stack(a, argc, argv);
+	line = get_next_line(0);
+	while (line)
 	{
-		free_stack(a);
-		free_stack(b);
-		return (0);
+		if (run_operation(line, a, b))
+		{
+			write(2, "Error\n", 6);
+			return (-1);
+		}
+		free(line);
+		line = get_next_line(0);
 	}
-	call_sort(l, a, b);
-	free_stack(a);
-	free_stack(b);
+	check(a, b);
 	return (0);
 }

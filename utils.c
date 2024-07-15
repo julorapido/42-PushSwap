@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:23:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 15:25:26 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/12 12:39:32 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	get_dist(t_stack **s, int ix)
 	return (dist);
 }
 
-
+/*
 long	median(t_stack **a)
 {
 	t_stack *h;
@@ -79,8 +79,7 @@ long	median(t_stack **a)
 	}
 	int n = (ft_stacksize(*a) + 1) / 2 - 1;
 	return (ar[n]);
-}
-
+}*/
 
 t_stack	*get_next_min(t_stack **s)
 {

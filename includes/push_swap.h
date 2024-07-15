@@ -6,15 +6,14 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/10 16:53:05 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:17:10 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <libft.h>
-
+# include "libft.h"
 # include <limits.h>
 # include <stdio.h>
 # include <string.h>
@@ -36,8 +35,7 @@ typedef struct s_stack
 	long			stack_i_max;
 }	t_stack;
 
-
-# define ABS(x) x < 0 ? -x : x
+//# define ABS(x) x < 0 ? -x : x
 
 // t_stack.c
 t_stack	*ft_stacknew(int value, t_stack *pre);
@@ -67,13 +65,12 @@ void	cq_n(t_stack **a, t_stack **b);
 void	insertion_sort(t_stack **a, t_stack **b);
 void	radix_sort(t_stack **a, t_stack **b);
 void	alg(t_stack **a, t_stack **b);
-void	insert_n(t_stack **a, t_stack **b, long spin, int enable_dblRt, long dbl_spin);
-//void	insert_n(t_stack **a, t_stack **b, long spin, int enable_dblRt);
+void	insert_n(t_stack **a, t_stack **b, long spin, int enable_dblRt);
 long	count_e(t_stack **b, long v_);
 void	quick_sort(t_stack **a, t_stack **b);
 long	count_e_alt(t_stack **b, long v_);
 
-void	z_sort(t_stack **a, t_stack **b);
+void	z_sort(t_stack **a, t_stack **b, long s, long e);
 
 // utils
 int		get_dist(t_stack **s, int ix);

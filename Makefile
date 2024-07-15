@@ -1,6 +1,10 @@
 NAME = push_swap
-SRC = push_swap.c t_stack.c sort.c insertion.c operations.c utils.c radix.c alg.c z_sort.c
+BONUS = checker
+SRC = push_swap.c t_stack.c sort.c operations.c utils.c z_sort.c
+SRC_BONUS = checker.c t_stack.c sort.c operations.c utils.c z_sort.c
+
 SRC_OBJ = $(SRC:.c=.o)
+SRC_BONUS_OBJ = $(SRC_BONUS.c=.o)
 
 FLAGS = -Wall -Wextra 
 
@@ -10,9 +14,13 @@ LIBFT = $(LIBFT_DIR)/libft.a
 INCLUDES = -I./includes -I$(LIBFT_DIR)
 
 all: $(LIBFT) $(NAME)
+bonus: $(LIBFT) $(BONUS)
 
 $(NAME): $(SRCS_OBJS)
 	gcc $(FLAGS) $(SRC) $(INCLUDES) -o $(NAME) $(LIBFT)
+
+$(BONUS): $(SRC_BONUS_OBJ)
+	gcc $(FLAGS) $(SRC_BONUS) $(INCLUDES) -o $(BONUS) $(LIBFT)
 
 $(LIBFT):
 	@echo "LIBFT IN MAKING..."
