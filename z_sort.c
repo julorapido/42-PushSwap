@@ -6,21 +6,19 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:45:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/16 16:07:47 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:15:56 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_bbl_sort(t_stack **a, long *arr)
+void	init_bbl_sort(t_stack **a, long *arr, long i)
 {
 	t_stack	*h;
-	long	i;
 	long	j;
 	long	temp;
 
 	h = *a;
-	i = -1;
 	while (i++ < ft_stacksize(*a) - 1)
 	{
 		arr[i] = h->nbr;
@@ -114,7 +112,7 @@ void	z_sort(t_stack **a, t_stack **b, long *range_start, long *range_end)
 
 	len = ft_stacksize(*a);
 	stred_ar = (long *) ft_calloc(len, sizeof(long));
-	init_bbl_sort(a, stred_ar);
+	init_bbl_sort(a, stred_ar, -1);
 	while (*a)
 	{
 		if (indx_from_arr(stred_ar, len, (*a)->nbr) <= *range_start)
@@ -123,8 +121,8 @@ void	z_sort(t_stack **a, t_stack **b, long *range_start, long *range_end)
 			r_ab(b, "rb\n");
 			xd(range_start, range_end);
 		}
-		else if (indx_from_arr(stred_ar, len, (*a)->nbr) > *range_start &&
-			indx_from_arr(stred_ar, len, (*a)->nbr) < *range_end)
+		else if (indx_from_arr(stred_ar, len, (*a)->nbr) > *range_start
+			&& indx_from_arr(stred_ar, len, (*a)->nbr) < *range_end)
 		{
 			p_ab(a, b, "pb\n");
 			xd(range_start, range_end);

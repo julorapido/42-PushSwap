@@ -6,19 +6,17 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/16 16:10:26 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:17:07 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static long	check_args(char **args)
+static long	check_args(char **args, long i)
 {
-	long	i;
 	long	j;
 	long	n;
 
-	i = 1;
 	while (args[i])
 	{
 		j = 0;
@@ -102,7 +100,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (-1);
-	if (check_args(argv) < 0)
+	if (check_args(argv, 1) < 0)
 	{
 		write(2, "Error\n", 6);
 		return (-1);
