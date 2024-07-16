@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:23:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/12 12:39:32 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:47:44 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,59 @@ int	get_dist(t_stack **s, int ix)
 		dist++;
 	}
 	return (dist);
+}
+
+long	indx_from_arr(long *arr, long en, long v__)
+{
+	long	i;
+
+	i = 0;
+	while (i < en)
+	{
+		if (v__ == arr[i])
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
+long	get_max_index(t_stack **b)
+{
+	t_stack	*h;
+	long	n;
+	long	j;
+	long	v__j;
+
+	j = 0;
+	n = -2147483647;
+	h = *b;
+	while (h)
+	{
+		if (h->nbr > n)
+		{
+			n = h->nbr;
+			v__j = j;
+		}
+		j++;
+		h = h->next;
+	}
+	return (v__j);
+}
+
+long	get_max(t_stack **b)
+{
+	t_stack	*h;
+	long	n;
+
+	n = -2147483647;
+	h = *b;
+	while (h)
+	{
+		if (h->nbr > n)
+			n = h->nbr;
+		h = h->next;
+	}
+	return (n);
 }
 
 /*
@@ -79,7 +132,7 @@ long	median(t_stack **a)
 	}
 	int n = (ft_stacksize(*a) + 1) / 2 - 1;
 	return (ar[n]);
-}*/
+}
 
 t_stack	*get_next_min(t_stack **s)
 {
@@ -118,3 +171,4 @@ void	index_stack(t_stack **s)
 		head = get_next_min(s);
 	}
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:45:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/15 16:26:08 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:07:47 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,17 @@ void	init_bbl_sort(t_stack **a, long *arr)
 	long	temp;
 
 	h = *a;
-	i = 0;
-	while (i < ft_stacksize(*a))
-	{
-		arr[i] = h->nbr;
-		h = h->next;
-		i++;
-	}
 	i = -1;
 	while (i++ < ft_stacksize(*a) - 1)
 	{
+		arr[i] = h->nbr;
+		h = h->next;
+	}
+	i = -1;
+	while (i++ < ft_stacksize(*a) - 2)
+	{
 		j = -1;
-		while (j++ < ft_stacksize(*a) - i - 1)
+		while (j++ < ft_stacksize(*a) - i - 2)
 		{
 			if (arr[j] > arr[j + 1])
 			{
@@ -43,58 +42,6 @@ void	init_bbl_sort(t_stack **a, long *arr)
 	}
 }
 
-long	indx_from_arr(long *arr, long en, long v__)
-{
-	long	i;
-
-	i = 0;
-	while (i < en)
-	{
-		if (v__ == arr[i])
-			return (i);
-		i++;
-	}
-	return (i);
-}
-
-long	get_max_index(t_stack **b)
-{
-	t_stack	*h;
-	long	n;
-	long	j;
-	long	v__j;
-
-	j = 0;
-	n = -10000000;
-	h = *b;
-	while (h)
-	{
-		if (h->nbr > n)
-		{
-			n = h->nbr;
-			v__j = j;
-		}
-		j++;
-		h = h->next;
-	}
-	return (v__j);
-}
-
-long	get_max(t_stack **b)
-{
-	t_stack	*h;
-	long	n;
-
-	n = -10000000;
-	h = *b;
-	while (h)
-	{
-		if (h->nbr > n)
-			n = h->nbr;
-		h = h->next;
-	}
-	return (n);
-}
 /*
 ========================================================
 1st of all
@@ -130,10 +77,8 @@ Once STACK-A is empty we get back elements from STACK-B
 void	back_in_a(t_stack **a, t_stack **b)
 {
 	long	l;
-	t_stack	*h;
 
-	h = *b;
-	while (h)
+	while (*b)
 	{
 		l = get_max_index(b);
 		if (l > ft_stacksize(*b) / 2)
@@ -153,39 +98,40 @@ void	back_in_a(t_stack **a, t_stack **b)
 			}
 		}
 		p_ab(b, a, "pa\n");
-		h = *b;
 	}
 }
 
-void	z_sort(t_stack **a, t_stack **b, long range_start, long range_end)
+void	xd(long *s, long *e)
 {
-	t_stack	*h;
+	*e = (*e) + 1;
+	*s = (*s) + 1;
+}
+
+void	z_sort(t_stack **a, t_stack **b, long *range_start, long *range_end)
+{
 	long	*stred_ar;
 	long	len;
 
 	len = ft_stacksize(*a);
-	stred_ar = (long *) malloc(len * sizeof(long));
+	stred_ar = (long *) ft_calloc(len, sizeof(long));
 	init_bbl_sort(a, stred_ar);
-	h = *a;
-	while (h)
+	while (*a)
 	{
-		if (indx_from_arr(stred_ar, len, h->nbr) <= range_start)
+		if (indx_from_arr(stred_ar, len, (*a)->nbr) <= *range_start)
 		{
 			p_ab(a, b, "pb\n");
 			r_ab(b, "rb\n");
-			range_start++;
-			range_end++;
+			xd(range_start, range_end);
 		}
-		else if (indx_from_arr(stred_ar, len, h->nbr) > range_start &&
-			indx_from_arr(stred_ar, len, h->nbr) < range_end)
+		else if (indx_from_arr(stred_ar, len, (*a)->nbr) > *range_start &&
+			indx_from_arr(stred_ar, len, (*a)->nbr) < *range_end)
 		{
 			p_ab(a, b, "pb\n");
-			range_end++;
-			range_start++;
+			xd(range_start, range_end);
 		}
-		else if (indx_from_arr(stred_ar, len, h->nbr) >= range_end)
+		else if (indx_from_arr(stred_ar, len, (*a)->nbr) >= *range_end)
 			r_ab(a, "ra\n");
-		h = *a;
 	}
 	back_in_a(a, b);
+	free(stred_ar);
 }

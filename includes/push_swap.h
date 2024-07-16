@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/15 15:17:10 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:08:15 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ typedef struct s_stack
 
 // t_stack.c
 t_stack	*ft_stacknew(int value, t_stack *pre);
-void	ft_stackadd_front(t_stack **stack, t_stack *new);
 t_stack	*ft_stacklast(t_stack *head);
 void	ft_stackadd_back(t_stack **stack, t_stack *new);
 long	ft_stacksize(t_stack *s);
 void	printList(t_stack *head);
-t_stack	**ft_stack_createCopy(t_stack **copy_from);
 void	free_stack(t_stack **s);
 void	printTList(t_stack **a, t_stack **b);
 t_stack	*ft_stack_nth(t_stack **s, long v);
@@ -54,29 +52,19 @@ void	s_ab(t_stack **a_b, char *m);
 void	p_ab(t_stack **from_, t_stack **to_, char *s);
 void	rr_ab(t_stack **a_b, char *s);
 void	r_ab(t_stack **a_b, char *s);
-void	rrr_ab(t_stack **a, t_stack **b);
-void	rvrr_ab(t_stack **a, t_stack **b);
 
 // sort specifics
 void	tw_n(t_stack **a);
 void	th_n(t_stack **a);
 void	qu_n(t_stack **a, t_stack **b);
 void	cq_n(t_stack **a, t_stack **b);
-void	insertion_sort(t_stack **a, t_stack **b);
-void	radix_sort(t_stack **a, t_stack **b);
-void	alg(t_stack **a, t_stack **b);
-void	insert_n(t_stack **a, t_stack **b, long spin, int enable_dblRt);
-long	count_e(t_stack **b, long v_);
-void	quick_sort(t_stack **a, t_stack **b);
-long	count_e_alt(t_stack **b, long v_);
-
-void	z_sort(t_stack **a, t_stack **b, long s, long e);
+void	z_sort(t_stack **a, t_stack **b, long *s, long *e);
 
 // utils
 int		get_dist(t_stack **s, int ix);
-int		is_sorted(t_stack **s);
-void	index_stack(t_stack **s);
-t_stack	*get_next_min(t_stack **s);
-long	median(t_stack **a);
+long	indx_from_arr(long *arr, long en, long v__);
+long	get_max_index(t_stack **b);
+long	get_max(t_stack **b);
+int		is_sorted(t_stack **stack);
 
 #endif

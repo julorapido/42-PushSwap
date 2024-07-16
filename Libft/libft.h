@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 01:13:37 by julessainth       #+#    #+#             */
-/*   Updated: 2024/07/15 17:30:38 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:01:26 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-# ifndef BUFFER_SIZE
-#  define  BUFFER_SIZE 12
-# endif
+# define  BUFFER_SIZE 12
 
 typedef struct s_list
 {

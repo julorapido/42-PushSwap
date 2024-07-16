@@ -6,66 +6,44 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/15 17:43:41 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:10:26 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	check_args(long *pos_i_arr, long *neg_i_arr, char **args)
+static long	check_args(char **args)
 {
 	long	i;
 	long	j;
 	long	n;
 
-	i = 0;
-	while (args[i++])
+	i = 1;
+	while (args[i])
 	{
 		j = 0;
 		while (args[i][j] != '\0')
 		{
-			if (ft_isdigit((int)args[i][j]) == 0
-				&& args[i][j] != '-')
+			if (ft_isdigit((int)args[i][j]) == 0 && args[i][j] != '-')
 				return (-1);
 			j++;
 		}
 		n = ft_atoi_l(args[i]);
-		if ((n > 2147483647 || n < -2147483648) || (pos_i_arr[n] && n >= 0)
-			|| (neg_i_arr[n] && n < 0))
+		if (n <= -2147483648 || n > 2147483647)
 			return (-1);
-		if (n >= 0)
-			pos_i_arr[(int) n] = 1;
-		else
-			neg_i_arr[(int) n] = 1;
+		j = i + 1;
+		while (args[j])
+		{
+			if (ft_atoi_l(args[j]) == n)
+				return (-1);
+			j++;
+		}
+		i++;
 	}
 	return (1);
 }
 
-static int	init_i_arrs(char **args)
-{
-	long	*pos_arr;
-	long	*neg_arr;
-	long	i;
-
-	pos_arr = (long *) malloc(3000000000 * sizeof(long));
-	neg_arr = (long *) malloc(3000000000 * sizeof(long));
-	if (!pos_arr || !neg_arr)
-		return (-1);
-	i = 0;
-	while (i < 3000000000)
-	{
-		pos_arr[i] = 0;
-		neg_arr[i] = 0;
-		i++;
-	}
-	i = check_args(pos_arr, neg_arr, args);
-	free(pos_arr);
-	free(neg_arr);
-	return (i);
-}
-
 static int	init_stack(t_stack **s, int ac, char **av)
-
 {
 	int		i;
 	t_stack	*n;
@@ -73,6 +51,7 @@ static int	init_stack(t_stack **s, int ac, char **av)
 	t_stack	*first_;
 
 	i = 1;
+	n = 0;
 	ac++;
 	while (av[i])
 	{
@@ -84,19 +63,24 @@ static int	init_stack(t_stack **s, int ac, char **av)
 		i++;
 	}
 	first_->prev = n;
-	index_stack(s);
 	return (i - 1);
 }
 
-static void	call_sort(int len, t_stack **a, t_stack **b)
+static void	call_sort(t_stack **a, t_stack **b)
 {
-	long	start;
-	long	end;
+	long	*start;
+	long	*end;
+	int		len;
 
-	start = 0;
-	end = 15;
+	start = malloc (sizeof(long) * 1);
+	end = malloc (sizeof(long) * 1);
+	if (!start || !end)
+		return ;
+	len = ft_stacksize(*a);
+	*start = 0;
+	*end = 15;
 	if (ft_stacksize(*a) > 100)
-		end = 30;
+		*end = 30;
 	if (len == 2)
 		tw_n(a);
 	if (len == 3)
@@ -107,30 +91,34 @@ static void	call_sort(int len, t_stack **a, t_stack **b)
 		cq_n(a, b);
 	if (len > 5)
 		z_sort(a, b, start, end);
+	free(start);
+	free(end);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack		**a;
 	t_stack		**b;
-	int			l;
 
-	if (argc < 2 || init_i_arrs(argv) == -1)
+	if (argc < 2)
 		return (-1);
+	if (check_args(argv) < 0)
+	{
+		write(2, "Error\n", 6);
+		return (-1);
+	}
 	a = (t_stack **) malloc(sizeof(t_stack **));
 	b = (t_stack **) malloc(sizeof(t_stack **));
-	if (!a || !b)
-		return (0);
 	*a = NULL;
 	*b = NULL;
-	l = init_stack(a, argc, argv);
+	init_stack(a, argc, argv);
 	if (is_sorted(a))
 	{
 		free_stack(a);
 		free_stack(b);
 		return (0);
 	}
-	call_sort(l, a, b);
+	call_sort(a, b);
 	free_stack(a);
 	free_stack(b);
 	return (0);

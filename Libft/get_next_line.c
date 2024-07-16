@@ -6,13 +6,13 @@
 /*   By: julessainthorant <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 10:14:25 by julessainthor     #+#    #+#             */
-/*   Updated: 2024/07/15 16:22:13 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:58:53 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_free(char *buffer, char *buf)
+static char	*ft_free(char *buffer, char *buf)
 {
 	char	*temp;
 
@@ -23,7 +23,7 @@ char	*ft_free(char *buffer, char *buf)
 	return (temp);
 }
 
-char	*ft_next_line(char *s_bfr)
+static char	*ft_next_line(char *s_bfr)
 {
 	char	*next_line;
 	int		i;
@@ -46,7 +46,7 @@ char	*ft_next_line(char *s_bfr)
 	return (next_line);
 }
 
-char	*ft_line(char *buffer)
+static char	*ft_line(char *buffer)
 {
 	char	*s;
 	int		i;
@@ -68,7 +68,7 @@ char	*ft_line(char *buffer)
 	return (s);
 }
 
-char	*read_file(int fd_, char *s)
+static char	*read_file(int fd_, char *s)
 {
 	char	*b;
 	int		bytes_r;
