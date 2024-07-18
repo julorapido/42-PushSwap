@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:25:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/12 12:42:40 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:21:06 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ long	ft_stacksize(t_stack *s)
 }
 
 // Prints the Linked List
-/*void	printList(t_stack *head)
+/*
+void	printList(t_stack *head)
 {
 	t_stack	*tmp;
 
@@ -99,6 +100,7 @@ long	ft_stacksize(t_stack *s)
 	printf("\n");
 }
 
+
 void	printTList(t_stack **a, t_stack **b)
 {
 	printf("======= STACK A ========= \n");
@@ -106,6 +108,7 @@ void	printTList(t_stack **a, t_stack **b)
 	printf("======= STACK B ========= \n");
 	printList(*b);
 }
+
 
 t_stack	*ft_stack_nth(t_stack **s, long n)
 {

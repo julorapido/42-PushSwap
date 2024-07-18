@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:10:19 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/16 16:34:21 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:26:54 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,61 +64,35 @@ static int	init_stack(t_stack **s, int ac, char **av)
 	return (i - 1);
 }
 
-static int	run_operation(char *op, t_stack **a, t_stack **b)
+static int	run_operation_t(char *op, t_stack **a, t_stack **b)
 {
-	if (!(ft_strcmp(op, "sa")))
-	{
-		s_ab(a, "");
-		return (0);
-	}
-	if (!(ft_strcmp(op, "sb")))
-	{
-		s_ab(b, "");
-		return (0);
-	}
-	if (!(ft_strcmp(op, "ss")))
-	{
-		s_ab(a, "");
-		s_ab(b, "");
-		return (0);
-	}
-	if (!(ft_strcmp(op, "pa")))
-	{
-		p_ab(b, a, "");
-		return (0);
-	}
-	if (!(ft_strcmp(op, "pb")))
-	{
-		p_ab(a, b, "");
-		return (0);
-	}
-	if (!(ft_strcmp(op, "ra")))
+	if (!(ft_strcmp(op, "ra\n")))
 	{
 		r_ab(a, "");
 		return (0);
 	}
-	if (!(ft_strcmp(op, "rb")))
+	if (!(ft_strcmp(op, "rb\n")))
 	{
 		r_ab(b, "");
 		return (0);
 	}
-	if (!(ft_strcmp(op, "rr")))
+	if (!(ft_strcmp(op, "rr\n")))
 	{
 		r_ab(a, "");
 		r_ab(b, "");
 		return (0);
 	}
-	if (!(ft_strcmp(op, "rra")))
+	if (!(ft_strcmp(op, "rra\n")))
 	{
 		rr_ab(a, "");
 		return (0);
 	}
-	if (!(ft_strcmp(op, "rrb")))
+	if (!(ft_strcmp(op, "rrb\n")))
 	{
 		rr_ab(b, "");
 		return (0);
 	}	
-	if (!(ft_strcmp(op, "rrr")))
+	if (!(ft_strcmp(op, "rrr\n")))
 	{
 		rr_ab(a, "");
 		rr_ab(b, "");
@@ -127,14 +101,35 @@ static int	run_operation(char *op, t_stack **a, t_stack **b)
 	return (1);
 }
 
-static void	check(t_stack **a, t_stack **b)
+static int	run_operation(char *op, t_stack **a, t_stack **b)
 {
-	if (!is_sorted(a))
-		write(1, "KO\n", 3);
-	if (is_sorted(a))
-		write(1, "OK\n", 3);
-	free_stack(a);
-	free_stack(b);
+	if (!(ft_strcmp(op, "sa\n")))
+	{
+		s_ab(a, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "sb\n")))
+	{
+		s_ab(b, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "ss\n")))
+	{
+		s_ab(a, "");
+		s_ab(b, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "pa\n")))
+	{
+		p_ab(b, a, "");
+		return (0);
+	}
+	if (!(ft_strcmp(op, "pb\n")))
+	{
+		p_ab(a, b, "");
+		return (0);
+	}
+	return (run_operation_t(op, a, b));
 }
 
 int	main(int argc, char **argv)
@@ -152,8 +147,6 @@ int	main(int argc, char **argv)
 	}
 	a = (t_stack **) malloc(sizeof(t_stack **));
 	b = (t_stack **) malloc(sizeof(t_stack **));
-	*a = NULL;
-	*b = NULL;
 	init_stack(a, argc, argv);
 	line = get_next_line(0);
 	while (line)

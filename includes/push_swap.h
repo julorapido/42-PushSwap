@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/16 16:08:15 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:22:55 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	cq_n(t_stack **a, t_stack **b);
 void	z_sort(t_stack **a, t_stack **b, long *s, long *e);
 
 // utils
-int		get_dist(t_stack **s, int ix);
 long	indx_from_arr(long *arr, long en, long v__);
 long	get_max_index(t_stack **b);
 long	get_max(t_stack **b);
 int		is_sorted(t_stack **stack);
+void	check(t_stack **a, t_stack **b);
 
 #endif

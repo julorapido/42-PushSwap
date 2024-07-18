@@ -6,26 +6,34 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:03:39 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/04 14:29:35 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:20:13 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_min(t_stack **stack, int val)
+static int	get_min(t_stack **stack)
 {
 	t_stack	*head;
-	int		min;
+	long	min;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = i;
 	head = *stack;
-	min = head->index;
-	while (head->next)
+	min = 2147483647;
+	while (head)
 	{
+		if (head->nbr < min)
+		{
+			min = head->nbr;
+			j = i;
+		}
 		head = head->next;
-		if ((head->index < min) && head->index != val)
-			min = head->index;
+		i++;
 	}
-	return (min);
+	return (j);
 }
 
 // sort 2 numbersi
@@ -85,7 +93,7 @@ void	qu_n(t_stack **a, t_stack **b)
 
 	if (is_sorted(a))
 		return ;
-	dist = get_dist(a, get_min(a, -1));
+	dist = get_min(a);
 	if (dist == 1)
 		s_ab(a, "sa\n");
 	else if (dist == 2)
@@ -113,7 +121,7 @@ void	cq_n(t_stack **a, t_stack **b)
 
 	if (is_sorted(a))
 		return ;
-	dist = get_dist(a, get_min(a, -1));
+	dist = get_min(a);
 	if (dist == 1)
 		s_ab(a, "sa\n");
 	else if (dist == 2)

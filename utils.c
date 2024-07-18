@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:23:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/16 16:32:38 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:23:13 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,14 @@ int	is_sorted(t_stack **stack)
 	return (1);
 }
 
-int	get_dist(t_stack **s, int ix)
+void	check(t_stack **a, t_stack **b)
 {
-	t_stack	*h;
-	int		dist;
-
-	dist = 0;
-	h = *s;
-	while (h)
-	{
-		if (h->index == ix)
-			break ;
-		h = h->next;
-		dist++;
-	}
-	return (dist);
+	if (!is_sorted(a))
+		write(1, "KO\n", 3);
+	if (is_sorted(a))
+		write(1, "OK\n", 3);
+	free_stack(a);
+	free_stack(b);
 }
 
 long	indx_from_arr(long *arr, long en, long v__)
@@ -88,7 +81,7 @@ long	get_max(t_stack **b)
 	n = -2147483647;
 	h = *b;
 	while (h)
-	{
+	{	
 		if (h->nbr > n)
 			n = h->nbr;
 		h = h->next;
@@ -97,6 +90,23 @@ long	get_max(t_stack **b)
 }
 
 /*
+
+int	get_dist(t_stack **s, int ix)
+{
+	t_stack	*h;
+	int		dist;
+
+	dist = 0;
+	h = *s;
+	while (h)
+	{
+		if (h->index == ix)
+			break ;
+		h = h->next;
+		dist++;
+	}
+	return (dist);
+}
 long	median(t_stack **a)
 {
 	t_stack *h;
