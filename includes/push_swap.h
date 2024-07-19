@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:33:54 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/18 15:22:55 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:52:03 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	s_ab(t_stack **a_b, char *m);
 void	p_ab(t_stack **from_, t_stack **to_, char *s);
 void	rr_ab(t_stack **a_b, char *s);
 void	r_ab(t_stack **a_b, char *s);
+int		rrr_ab(t_stack **a, t_stack **b);
 
 // sort specifics
 void	tw_n(t_stack **a);
@@ -65,6 +66,6 @@ long	indx_from_arr(long *arr, long en, long v__);
 long	get_max_index(t_stack **b);
 long	get_max(t_stack **b);
 int		is_sorted(t_stack **stack);
-void	check(t_stack **a, t_stack **b);
+int		check(t_stack **a, t_stack **b);
 
 #endif

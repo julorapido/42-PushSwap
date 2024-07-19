@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:23:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/18 15:23:13 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:46:08 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_sorted(t_stack **stack)
 	return (1);
 }
 
-void	check(t_stack **a, t_stack **b)
+int	check(t_stack **a, t_stack **b)
 {
 	if (!is_sorted(a))
 		write(1, "KO\n", 3);
@@ -34,6 +34,7 @@ void	check(t_stack **a, t_stack **b)
 		write(1, "OK\n", 3);
 	free_stack(a);
 	free_stack(b);
+	return (0);
 }
 
 long	indx_from_arr(long *arr, long en, long v__)

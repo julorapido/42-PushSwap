@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:10:19 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/18 15:26:54 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:56:04 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,7 @@ static int	run_operation_t(char *op, t_stack **a, t_stack **b)
 		return (0);
 	}
 	if (!(ft_strcmp(op, "rr\n")))
-	{
-		r_ab(a, "");
-		r_ab(b, "");
-		return (0);
-	}
+		return (rrr_ab(a, b));
 	if (!(ft_strcmp(op, "rra\n")))
 	{
 		rr_ab(a, "");
@@ -89,12 +85,6 @@ static int	run_operation_t(char *op, t_stack **a, t_stack **b)
 	}
 	if (!(ft_strcmp(op, "rrb\n")))
 	{
-		rr_ab(b, "");
-		return (0);
-	}	
-	if (!(ft_strcmp(op, "rrr\n")))
-	{
-		rr_ab(a, "");
 		rr_ab(b, "");
 		return (0);
 	}
@@ -110,12 +100,6 @@ static int	run_operation(char *op, t_stack **a, t_stack **b)
 	}
 	if (!(ft_strcmp(op, "sb\n")))
 	{
-		s_ab(b, "");
-		return (0);
-	}
-	if (!(ft_strcmp(op, "ss\n")))
-	{
-		s_ab(a, "");
 		s_ab(b, "");
 		return (0);
 	}
@@ -141,10 +125,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (-1);
 	if (check_args(argv, 1) < 0)
-	{
-		write(2, "Error\n", 6);
-		return (-1);
-	}
+		return (write(2, "Error\n", 6));
 	a = (t_stack **) malloc(sizeof(t_stack **));
 	b = (t_stack **) malloc(sizeof(t_stack **));
 	init_stack(a, argc, argv);
@@ -152,13 +133,9 @@ int	main(int argc, char **argv)
 	while (line)
 	{
 		if (run_operation(line, a, b))
-		{
-			write(2, "Error\n", 6);
-			return (-1);
-		}
+			return (write(2, "Error\n", 6));
 		free(line);
 		line = get_next_line(0);
 	}
-	check(a, b);
-	return (0);
+	return (check(a, b));
 }

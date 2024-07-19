@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:25:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/18 15:21:06 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:42:15 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,21 @@ long	ft_stacksize(t_stack *s)
 	return (i);
 }
 
+void	free_stack(t_stack **stack)
+{
+	t_stack	*head;
+	t_stack	*tmp;
+
+	head = *stack;
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+	free(stack);
+}
+
 // Prints the Linked List
 /*
 void	printList(t_stack *head)
@@ -146,18 +161,3 @@ t_stack	**ft_stack_createCopy(t_stack **copy_from)
 	index_stack(new);
 	return (new);
 }*/
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*head;
-	t_stack	*tmp;
-
-	head = *stack;
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-	free(stack);
-}
