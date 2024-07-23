@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:10:19 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/19 11:56:04 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:14:24 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ static long	check_args(char **args, long i)
 		j = 0;
 		while (args[i][j] != '\0')
 		{
-			if (ft_isdigit((int)args[i][j]) == 0 && args[i][j] != '-')
+			if ((!ft_isdigit((int)args[i][j]) && (j > 0))
+				|| (!j && !ft_isdigit((int)args[i][j]) && args[i][j] != '-'))
 				return (-1);
 			j++;
 		}
 		n = ft_atoi_l(args[i]);
 		if (n <= -2147483648 || n > 2147483647)
 			return (-1);
-		j = i + 1;
-		while (args[j])
+		j = i;
+		while (args[(j++) + 1])
 		{
 			if (ft_atoi_l(args[j]) == n)
 				return (-1);
-			j++;
 		}
 		i++;
 	}

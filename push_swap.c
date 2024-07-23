@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:36:42 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/07/16 16:17:07 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:13:29 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ static long	check_args(char **args, long i)
 		j = 0;
 		while (args[i][j] != '\0')
 		{
-			if (ft_isdigit((int)args[i][j]) == 0 && args[i][j] != '-')
+			if ((!ft_isdigit((int)args[i][j]) && (j > 0))
+				|| (!j && !ft_isdigit((int)args[i][j]) && args[i][j] != '-'))
 				return (-1);
 			j++;
 		}
 		n = ft_atoi_l(args[i]);
 		if (n <= -2147483648 || n > 2147483647)
 			return (-1);
-		j = i + 1;
-		while (args[j])
+		j = i;
+		while (args[(j++) + 1])
 		{
 			if (ft_atoi_l(args[j]) == n)
 				return (-1);
-			j++;
 		}
 		i++;
 	}
